@@ -1,6 +1,4 @@
-﻿using Jamesnet.Wpf.Animation;
-using Jamesnet.Wpf.Controls;
-using System.Windows;
+﻿using System.Windows;
 
 namespace Navigation
 {
@@ -15,7 +13,7 @@ namespace Navigation
 
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            bar.SelectedIndex = 1;
+            bar.SelectedIndex = 3;
         }
     }
 }

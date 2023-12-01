@@ -6,8 +6,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:menu="clr-namespace:NavigationMenu;assembly=NavigationMenu"
         mc:Ignorable="d"
+        Background="#222222"
         Title="Vicky Magic" Height="450" Width="800">
-    <Grid Background="#222222">
+    <Grid>
         <menu:MagicBar x:Name="bar">
             <ListBoxItem Content="Apple" Tag="{x:Static james:IconType.Apple}"/>
             <ListBoxItem Content="Microsoft" Tag="{x:Static james:IconType.Microsoft}"/>

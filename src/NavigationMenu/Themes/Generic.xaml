@@ -4,21 +4,39 @@
     xmlns:james="https://jamesnet.dev/xaml/presentation"
     xmlns:local="clr-namespace:NavigationMenu">
 
-    <Geometry x:Key="Round">M0,0 L100,0 C95.167503,0 91.135628,3.4278221 90.203163,7.9846497 L90.152122,8.2704506 89.963921,9.1416779 C85.813438,27.384438 69.496498,41 50,41 30.5035,41 14.186564,27.384438 10.036079,9.1416779 L9.8478823,8.2704926 9.7968359,7.9846497 C8.8643732,3.4278221 4.8324914,0 0,0 z</Geometry>
-
+    <Geometry x:Key="Round">
+        M0,0 L100,0 C95.167503,0 91.135628,3.4278221 90.203163,7.9846497 L90.152122,8.2704506 89.963921,9.1416779 C85.813438,27.384438 69.496498,41 50,41 30.5035,41 14.186564,27.384438 10.036079,9.1416779 L9.8478823,8.2704926 9.7968359,7.9846497 C8.8643732,3.4278221 4.8324914,0 0,0 z
+    </Geometry>
+    
     <Storyboard x:Key="Selected">
-        <james:ThickItem Mode="CubicEaseInOut" TargetName="icon" Duration="0:0:0.5" Property="Margin" To="0 -75 0 0"/>
-        <james:ColorItem Mode="CubicEaseInOut" TargetName="icon" Duration="0:0:0.5" Property="Fill.Color" To="#333333"/>
+        <james:ThickItem Mode="CubicEaseInOut" TargetName="icon" Duration="0:0:0.5" Property="Margin" To="0 -80 0 0"/>
         <james:ThickItem Mode="CubicEaseInOut" TargetName="name" Duration="0:0:0.5" Property="Margin" To="0 45 0 0"/>
+        <james:ColorItem Mode="CubicEaseInOut" TargetName="icon" Duration="0:0:0.5" Property="Fill.Color" To="#333333"/>
         <james:ColorItem Mode="CubicEaseInOut" TargetName="name" Duration="0:0:0.5" Property="Foreground.Color" To="#333333"/>
     </Storyboard>
-    
+
     <Storyboard x:Key="UnSelected">
         <james:ThickItem Mode="CubicEaseInOut" TargetName="icon" Duration="0:0:0.5" Property="Margin" To="0 0 0 0"/>
-        <james:ColorItem Mode="CubicEaseInOut" TargetName="icon" Duration="0:0:0.5" Property="Fill.Color" To="#44333333"/>
         <james:ThickItem Mode="CubicEaseInOut" TargetName="name" Duration="0:0:0.5" Property="Margin" To="0 60 0 0"/>
+        <james:ColorItem Mode="CubicEaseInOut" TargetName="icon" Duration="0:0:0.5" Property="Fill.Color" To="#44333333"/>
         <james:ColorItem Mode="CubicEaseInOut" TargetName="name" Duration="0:0:0.5" Property="Foreground.Color" To="#00000000"/>
     </Storyboard>
+
+    <Style TargetType="{x:Type james:JamesIcon}" x:Key="Icon">
+        <Setter Property="Icon" Value="{Binding RelativeSource={RelativeSource AncestorType=ListBoxItem}, Path=Tag}"/>
+        <Setter Property="Width" Value="40"/>
+        <Setter Property="Height" Value="40"/>
+        <Setter Property="Fill" Value="#44333333"/>
+    </Style>
+
+    <Style TargetType="{x:Type TextBlock}" x:Key="Name">
+        <Setter Property="Text" Value="{Binding RelativeSource={RelativeSource AncestorType=ListBoxItem}, Path=Content}"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="Foreground" Value="#00000000"/>
+        <Setter Property="Margin" Value="0 60 0 0"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="FontSize" Value="14"/>
+    </Style>
     
     <Style TargetType="{x:Type ListBoxItem}" x:Key="MagicBarItem">
         <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
@@ -26,20 +44,10 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ListBoxItem}">
-                    <Border Background="{TemplateBinding Background}">
-                        <Grid>
-                            <james:JamesIcon x:Name="icon" Icon="{TemplateBinding Tag}"
-                                         Fill="#44333333"
-                                         Width="40" Height="40"/>
-                            <TextBlock x:Name="name" 
-                                       Text="{TemplateBinding Content}"
-                                       Foreground="#00000000"
-                                       Margin="0 60 0 0"
-                                       FontWeight="Bold"
-                                       HorizontalAlignment="Center"
-                                       FontSize="14"/>
-                        </Grid>
-                    </Border>
+                    <Grid Background="{TemplateBinding Background}">
+                        <james:JamesIcon x:Name="icon" Style="{StaticResource Icon}"/>
+                        <TextBlock x:Name="name" Style="{StaticResource Name}"/>
+                    </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsSelected" Value="True">
                             <Trigger.EnterActions>
@@ -54,54 +62,47 @@
             </Setter.Value>
         </Setter>
     </Style>
-    
+
+    <Style TargetType="{x:Type Border}" x:Key="Bar">
+        <Setter Property="Background" Value="#DDDDDD"/>
+        <Setter Property="Margin" Value="0 40 0 0"/>
+        <Setter Property="CornerRadius" Value="10"/>
+    </Style>
+
+    <Style TargetType="{x:Type Grid}" x:Key="Circle">
+        <Setter Property="Canvas.Left" Value="-100"/>
+        <Setter Property="Width" Value="80"/>
+        <Setter Property="Height" Value="80"/>
+    </Style>
+
+    <Style TargetType="{x:Type Path}" x:Key="Path">
+        <Setter Property="Margin" Value="-10 40 -10 -1"/>
+        <Setter Property="Width" Value="100"/>
+        <Setter Property="Height" Value="100"/>
+        <Setter Property="Fill" Value="#222222"/>
+        <Setter Property="Data" Value="{StaticResource Round}"/>
+    </Style>
+
     <Style TargetType="{x:Type local:MagicBar}">
         <Setter Property="SnapsToDevicePixels" Value="True"/>
         <Setter Property="UseLayoutRounding" Value="True"/>
         <Setter Property="ItemContainerStyle" Value="{StaticResource MagicBarItem}"/>
-        <Setter Property="Width" Value="450"/>
+        <Setter Property="Width" Value="440"/>
         <Setter Property="Height" Value="120"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:MagicBar}">
-                    <Border Background="{TemplateBinding Background}"
-                            BorderBrush="{TemplateBinding BorderBrush}"
-                            BorderThickness="{TemplateBinding BorderThickness}">
-                        <Border.Clip>
-                            <RectangleGeometry Rect="0, 0, 450, 120"/>
-                        </Border.Clip>
-                            <Grid Width="400">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="40"/>
-                                <RowDefinition Height="80"/>
-                            </Grid.RowDefinitions>
-                            <Border Grid.Row="1" Background="#DDDDDD"
-                                    Margin="-20 0 -20 0"
-                                    CornerRadius="10"/>
-                            <Canvas Grid.Row="0" Grid.RowSpan="2"
-                                    VerticalAlignment="Top">
-                                <Border x:Name="circle" Background="#222222"
-                                        Canvas.Left="-100"
-                                        CornerRadius="40"
-                                        Width="80" Height="80">
-                                    <Grid>
-                                        <Path Margin="-10 40 -10 -40"
-                                              Width="120" 
-                                              StrokeThickness="0"
-                                              Height="120" 
-                                              Fill="#222222" 
-                                              Data="{StaticResource Round}"/>
-                                        <Ellipse Width="68" Height="68"
-                                                 Fill="#ddcf2d"/>
-                                    </Grid>
-                                </Border>
-                            </Canvas>
-                            <ItemsPresenter Grid.Row="1"
-                                            Width="400"
-                                            HorizontalAlignment="Center"/>
-                            
-                        </Grid>
-                    </Border>
+                    <Grid>
+                        <Border Grid.Row="1" Style="{StaticResource Bar}"/>
+                        <Canvas Margin="20 0 20 0">
+                            <Grid x:Name="circle" Style="{StaticResource Circle}">
+                                <Path Style="{StaticResource Path}"/>
+                                <Ellipse Fill="#222222"/>
+                                <Ellipse Fill="#DDCF2D" Margin="6"/>
+                            </Grid>
+                        </Canvas>
+                        <ItemsPresenter Margin="20 40 20 0"/>
+                    </Grid>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

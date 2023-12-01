@@ -8,7 +8,8 @@ namespace NavigationMenu
 {
     public class MagicBar : ListBox
     {
-        private Border panel;
+        private ValueItem _valueItem;
+        private Storyboard _storyboard;
 
         static MagicBar()
         {
@@ -19,30 +20,31 @@ namespace NavigationMenu
         {
             base.OnApplyTemplate();
 
-            panel = GetTemplateChild("circle") as Border;
+            Grid circle = (Grid)GetTemplateChild("circle");
+            InitStoryboard(circle);
+        }
+
+        private void InitStoryboard(Grid circle)
+        {
+            _valueItem = new();
+            _storyboard = new();
+
+            _valueItem.Mode = EasingFunctionBaseMode.QuinticEaseInOut;
+            _valueItem.Property = new PropertyPath(Canvas.LeftProperty);
+            _valueItem.Duration = new Duration(new TimeSpan(0, 0, 0, 0, 500));
+
+            Storyboard.SetTarget(_valueItem, circle);
+            Storyboard.SetTargetProperty(_valueItem, _valueItem.Property);
+
+            _storyboard.Children.Add(_valueItem);
         }
 
         protected override void OnSelectionChanged(SelectionChangedEventArgs e)
         {
             base.OnSelectionChanged(e);
 
-            ValueItem vi = new();
-            vi.Mode = EasingFunctionBaseMode.CubicEaseInOut;
-            vi.TargetName = "circle";
-            vi.Property = new PropertyPath(Canvas.LeftProperty);
-            vi.Duration = new Duration(new TimeSpan(0, 0, 0, 0, 500));
-            vi.To = SelectedIndex * 80;
-
-            // Storyboard 생성 및 설정
-            Storyboard storyboard = new Storyboard();
-            Storyboard.SetTarget(vi, panel);
-            Storyboard.SetTargetProperty(vi, vi.Property);
-
-            // Storyboard에 애니메이션 추가
-            storyboard.Children.Add(vi);
-
-            // 애니메이션 시작
-            storyboard.Begin();
+            _valueItem.To = SelectedIndex * 80;
+            _storyboard.Begin();
         }
     }
 }
