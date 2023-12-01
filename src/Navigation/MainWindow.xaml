@@ -1,0 +1,19 @@
+﻿<Window x:Class="Navigation.MainWindow"
+        xmlns:james="https://jamesnet.dev/xaml/presentation"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:menu="clr-namespace:NavigationMenu;assembly=NavigationMenu"
+        mc:Ignorable="d"
+        Title="Vicky MagicBar" Height="450" Width="800">
+    <Grid Background="#222222">
+        <menu:MagicBar x:Name="bar">
+            <ListBoxItem Content="Apple" Tag="{x:Static james:IconType.Apple}"/>
+            <ListBoxItem Content="Microsoft" Tag="{x:Static james:IconType.Microsoft}"/>
+            <ListBoxItem Content="Google" Tag="{x:Static james:IconType.Google}"/>
+            <ListBoxItem Content="Face" Tag="{x:Static james:IconType.Facebook}"/>
+            <ListBoxItem Content="Instagram" Tag="{x:Static james:IconType.MicrosoftVisualStudio}"/>
+        </menu:MagicBar>
+    </Grid> 
+</Window>
