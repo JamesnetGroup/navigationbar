@@ -1,1 +1,1 @@
-# navigationbar
+#  MagicNavigationBar
