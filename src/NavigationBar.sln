@@ -3,15 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34310.174
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NavigationBar", "NavigationBar\NavigationBar.csproj", "{232952A1-F010-4922-A054-90F047F7247F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NavigationBar", "NavigationBar\NavigationBar.csproj", "{844586E9-C263-460A-8889-1DF3B17B2ADD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Navigation", "Navigation\Navigation.csproj", "{F9881BF9-4440-42F7-88CD-C1E5FCF8A1B1}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Old", "Old", "{B15E0411-713D-40E9-AA32-E693513FEC57}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "New", "New", "{EA5F49F9-78BC-49DD-9762-4CB599EA9687}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NavigationMenu", "NavigationMenu\NavigationMenu.csproj", "{8875352B-6B90-4856-A10C-12CC51374CDC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemoApp", "DemoApp\DemoApp.csproj", "{AED5B0EC-6E27-46AA-902A-44FD35F42F18}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,28 +13,19 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{232952A1-F010-4922-A054-90F047F7247F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{232952A1-F010-4922-A054-90F047F7247F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{232952A1-F010-4922-A054-90F047F7247F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{232952A1-F010-4922-A054-90F047F7247F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F9881BF9-4440-42F7-88CD-C1E5FCF8A1B1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F9881BF9-4440-42F7-88CD-C1E5FCF8A1B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F9881BF9-4440-42F7-88CD-C1E5FCF8A1B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F9881BF9-4440-42F7-88CD-C1E5FCF8A1B1}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8875352B-6B90-4856-A10C-12CC51374CDC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8875352B-6B90-4856-A10C-12CC51374CDC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8875352B-6B90-4856-A10C-12CC51374CDC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8875352B-6B90-4856-A10C-12CC51374CDC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{844586E9-C263-460A-8889-1DF3B17B2ADD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{844586E9-C263-460A-8889-1DF3B17B2ADD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{844586E9-C263-460A-8889-1DF3B17B2ADD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{844586E9-C263-460A-8889-1DF3B17B2ADD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AED5B0EC-6E27-46AA-902A-44FD35F42F18}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AED5B0EC-6E27-46AA-902A-44FD35F42F18}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AED5B0EC-6E27-46AA-902A-44FD35F42F18}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AED5B0EC-6E27-46AA-902A-44FD35F42F18}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{232952A1-F010-4922-A054-90F047F7247F} = {B15E0411-713D-40E9-AA32-E693513FEC57}
-		{F9881BF9-4440-42F7-88CD-C1E5FCF8A1B1} = {EA5F49F9-78BC-49DD-9762-4CB599EA9687}
-		{8875352B-6B90-4856-A10C-12CC51374CDC} = {EA5F49F9-78BC-49DD-9762-4CB599EA9687}
-	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {D052EB61-542B-499D-B6A8-3F16109BEA75}
+		SolutionGuid = {17B3F628-F00A-40E5-B254-D0AD3A7074F5}
 	EndGlobalSection
 EndGlobal
