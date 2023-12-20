@@ -38,6 +38,10 @@ In the Magic Navigation Bar project, the Circle component is a visual highlight 
 
 We create a sense of spatial depth and layering by adding two circles with different positions and colors. Additionally, to ensure a natural transition from the Circle component to the MagicBar area, we designed a smooth and flowing multi-arc graphic. In WPF, there are various ways to implement such graphics, including using pre-drawn images or directly drawing in the project using the Path attribute. However, due to the unique nature and complexity of the graphic, we sought a simpler and more convenient method.
 
+<img width="1156" alt="스크린샷 2023-12-20 오후 8 43 15" src="https://github.com/vickyqu115/navigationbar/assets/101777355/0526a9ef-8d77-4d8c-b62c-91deebb7ea8d">
+
+<dr/>
+
 This approach reminded me of my recent foray into 3D printing, where I often used merging and boolean functions in Blender software to create special-shaped 3D models. In Microsoft Blend, similar methods can be applied to create complex graphics.
 
 The design process involved using a large circle to create a downward protruding arc at the bottom, then adding a smaller circle on each side of the large circle at the same height. By adjusting the diameter of the large circle, we ensured that the large and small circles intersected just right. Next, we used the merge function to remove the unnecessary part of the large circle, followed by the subtract function to eliminate the unwanted parts of the small circles, leaving only the arc shape at the intersections. Finally, by adding a rectangle and removing the unnecessary parts, we achieved a special and natural arc shape.
