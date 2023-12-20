@@ -1,4 +1,5 @@
 #  MagicNavigationBar
+![KakaoTalk_Photo_2023-12-20-19-57-28](https://github.com/vickyqu115/navigationbar/assets/101777355/93dc0aaf-d4ce-4d4e-abb2-8a1529019b07)
 
 ### Introduction: Project Background and Overview
 As a developer deeply passionate about WPF (Windows Presentation Foundation) technology, I firmly believe in its potential far beyond what we usually perceive. WPF is not just a powerful UI framework; its diversity and superior performance offer developers a vast space for creativity. My goal is to gradually unveil these aspects of WPF through various projects, providing technical support and inspiration to those interested in or currently working with WPF technology.
