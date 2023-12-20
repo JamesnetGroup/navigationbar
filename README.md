@@ -75,13 +75,13 @@ Here, by adding Selected and UnSelected Storyboards, we display the animation ef
 
 The movement of the circle component needs to be precisely calculated based on the clicked position, and therefore cannot be implemented in XAML but needs to be done in C# code.
 
-#### OnApplyTemplate Method:
+- #### OnApplyTemplate Method:
 
 This is an important method in the lifecycle of the MagicBar control. It is called when the control’s template is applied.
 Inside the method, we first call the base class’s OnApplyTemplate method to ensure all standard initialization steps are executed.
 Then, using the GetTemplateChild method, we retrieve the Grid element named "PART_Circle". This Grid is likely the target element for the animation, displaying the animation effect during user interaction.
 
-#### InitStoryboard Method:
+- #### InitStoryboard Method:
 
 This method is responsible for initializing the animation. It first creates instances of ValueItem (_vi) and Storyboard (_sb).
 The easing function set for ValueItem is QuinticEaseInOut, which slows down at the start and end of the animation and accelerates in the middle, making the animation appear smooth and natural.
@@ -89,7 +89,7 @@ The animation affects the property Canvas.LeftProperty, indicating that the anim
 The duration of the animation is set to 0.5 seconds.
 Finally, the animation target is set to the passed circle (Grid) element, and the animation is added to the storyboard.
 
-#### OnSelectionChanged Method:
+- #### OnSelectionChanged Method:
 
 This overridden method is triggered when the selected item in MagicBar changes.
 The method first calls the base class’s OnSelectionChanged method to ensure standard behavior is executed.
