@@ -86,8 +86,7 @@ Then, using the GetTemplateChild method, we retrieve the Grid element named "PAR
 This method is responsible for initializing the animation. It first creates instances of ValueItem (_vi) and Storyboard (_sb).
 The easing function set for ValueItem is QuinticEaseInOut, which slows down at the start and end of the animation and accelerates in the middle, making the animation appear smooth and natural.
 The animation affects the property Canvas.LeftProperty, indicating that the animation will change the horizontal position of the target element.
-The duration of the animation is set to 0.5 seconds.
-Finally, the animation target is set to the passed circle (Grid) element, and the animation is added to the storyboard.
+The duration of the animation is set to 0.5 seconds. Finally, the animation target is set to the passed circle (Grid) element, and the animation is added to the storyboard.
 
 - #### OnSelectionChanged Method:
 
