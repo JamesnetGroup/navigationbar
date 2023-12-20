@@ -26,10 +26,12 @@ The core of the XAML code in the Magic Navigation Bar is centered around the cus
 - #### 1.ListBoxItem Structure:
 
   - The ListBoxItem serves as the basic building block of the MagicBar. Each ListBoxItem includes an Icon (using JamesIcon) and text (using TextBlock). This structure provides each navigation item with an icon and a corresponding text label, offering an intuitive navigation experience for users.
-- ### 2.Use and Customization of Icons:
+
+- #### 2.Use and Customization of Icons:
 
   - With the jamesnet.wpf library, it becomes easy to add and use a variety of icon materials. This greatly simplifies the process of using icons and allows for the customization of the icons' size and color through custom controls. Such flexibility ensures that each item in the MagicBar is unique yet maintains consistency.
-- ### 3.Application of RelativeSource Binding:
+
+- #### 3.Application of RelativeSource Binding:
 
   - By employing RelativeSource Binding, we can move the TemplateBinding of Icons and Texts, initially defined within the ListBoxItem area, to the JamesIcon and TextBlock areas for individual management.
 This approach allows each component (Icon and Text) to have its own definition and style, making the code more modular, easier to maintain, and reusable. Separating bindings and styles into their respective areas clarifies the overall code structure, making it easier to understand and modify. Furthermore, this separation also provides greater flexibility, as it allows for the individual styling and behavior adjustment of different components without affecting others.
