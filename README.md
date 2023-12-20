@@ -2,7 +2,7 @@
 ![KakaoTalk_Photo_2023-12-20-19-57-28](https://github.com/vickyqu115/navigationbar/assets/101777355/93dc0aaf-d4ce-4d4e-abb2-8a1529019b07)
 
 ### Introduction: Project Background and Overview
-As a developer deeply passionate about WPF (Windows Presentation Foundation) technology, I firmly believe in its potential far beyond what we usually perceive. WPF is not just a powerful UI framework; its diversity and superior performance offer developers a vast space for creativity. My goal is to gradually unveil these aspects of WPF through various projects, providing technical support and inspiration to those interested in or currently working with WPF technology.
+As a developer deeply passionate about WPF technology, I firmly believe in its potential far beyond what we usually perceive. WPF is not just a powerful UI framework; its diversity and superior performance offer developers a vast space for creativity. My goal is to gradually unveil these aspects of WPF through various projects, providing technical support and inspiration to those interested in or currently working with WPF technology.
 
 ### The Design Philosophy of Magic Navigation Bar:
 The essence of this project is to create a simplistic yet vibrant Magic Navigation Bar. In the contemporary world of programming, similar navigation bars are typically implemented using HTML, CSS, and JavaScript. The advantage of these technologies lies in their widespread application and flexibility. HTML provides the structure, CSS handles the styling and layout, and JavaScript manages interaction and animation. Together, they create visually appealing and functionally robust web applications.
