@@ -43,10 +43,48 @@ We create a sense of spatial depth and layering by adding two circles with diffe
 
 <img width="1156" alt="스크린샷 2023-12-20 오후 8 43 15" src="https://github.com/vickyqu115/navigationbar/assets/101777355/0526a9ef-8d77-4d8c-b62c-91deebb7ea8d">
 
-<dr/>
 
 This approach reminded me of my recent foray into 3D printing, where I often used merging and boolean functions in Blender software to create special-shaped 3D models. In Microsoft Blend, similar methods can be applied to create complex graphics.
 
 The design process involved using a large circle to create a downward protruding arc at the bottom, then adding a smaller circle on each side of the large circle at the same height. By adjusting the diameter of the large circle, we ensured that the large and small circles intersected just right. Next, we used the merge function to remove the unnecessary part of the large circle, followed by the subtract function to eliminate the unwanted parts of the small circles, leaving only the arc shape at the intersections. Finally, by adding a rectangle and removing the unnecessary parts, we achieved a special and natural arc shape.
 
 This innovative design method not only showcases the powerful capabilities of WPF and Blend in handling complex graphics but also offers a new perspective in thinking about and solving design challenges. Through this approach, the Circle component's design is not only aesthetically pleasing but also innovative and flexible in its technical execution, adding unique charm to the entire Magic Navigation Bar.
+
+## 3.Animation Creation
+### ListBoxItem Area Icon and Text Movement Animation:
+
+  - We can implement the animation of the icon and text moving up and down in the ListBoxItem area by adding an IsSelected property trigger in XAML. This allows us to define the behavior when a ListBoxItem is selected or deselected.
+
+#### Storyboard Concept:
+
+A Storyboard in WPF is a container used to define a series of animations. It can contain multiple animation elements that play sequentially or simultaneously on a timeline, creating complex animation sequences.
+Here, by adding Selected and UnSelected Storyboards, we display the animation effect of the icon and text moving positions while simultaneously changing colors.
+
+#### Animation Properties:
+
+Mode: CubicEaseInOut is an easing function used to control the acceleration and deceleration of the animation, making it appear more natural.
+TargetName: Specifies the name of the element to which the animation is applied.
+Duration: The total duration of the animation.
+Property: Defines the property to be animated, such as Margin or Fill.Color.
+Circle Component Movement:
+
+The movement of the circle component needs to be precisely calculated based on the clicked position, and therefore cannot be implemented in XAML but needs to be done in C# code.
+
+OnApplyTemplate Method:
+
+This is an important method in the lifecycle of the MagicBar control. It is called when the control’s template is applied.
+Inside the method, we first call the base class’s OnApplyTemplate method to ensure all standard initialization steps are executed.
+Then, using the GetTemplateChild method, we retrieve the Grid element named "PART_Circle". This Grid is likely the target element for the animation, displaying the animation effect during user interaction.
+InitStoryboard Method:
+
+This method is responsible for initializing the animation. It first creates instances of ValueItem (_vi) and Storyboard (_sb).
+The easing function set for ValueItem is QuinticEaseInOut, which slows down at the start and end of the animation and accelerates in the middle, making the animation appear smooth and natural.
+The animation affects the property Canvas.LeftProperty, indicating that the animation will change the horizontal position of the target element.
+The duration of the animation is set to 0.5 seconds.
+Finally, the animation target is set to the passed circle (Grid) element, and the animation is added to the storyboard.
+OnSelectionChanged Method:
+
+This overridden method is triggered when the selected item in MagicBar changes.
+The method first calls the base class’s OnSelectionChanged method to ensure standard behavior is executed.
+Then, it sets the _vi’s To property based on the index of the selected item, determining the value of Canvas.LeftProperty at the end of the animation. The animation moves the element to a position proportional to the SelectedIndex.
+Lastly, by calling _sb.Begin(), the storyboard is started, and the animation is played.
