@@ -9,7 +9,6 @@ The essence of this project is to create a simplistic yet vibrant Magic Navigati
 
 However, constructing such a project with WPF technology is often perceived as complex and challenging, especially in terms of project structure and animation presentation. This is where the challenge lies: with a deep understanding of the flexibility and powerful capabilities of WPF, not only can this process be simplified, but it can also be elegantly implemented through code.
 
-
 ## Project Overview
 ### The Power of WPF:
 In this project, we leverage the formidable capabilities of WPF, particularly the rich combination of XAML and C# backend code, to construct a visually appealing and fully functional Magic Navigation Bar. WPF allows us to design UIs using a declarative language (XAML), while utilizing the strong typing and object-oriented features of C# to handle logic and behavior. This combination provides immense flexibility for creating complex and dynamic UIs.
