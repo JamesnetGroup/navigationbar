@@ -89,7 +89,7 @@ The animation affects the property Canvas.LeftProperty, indicating that the anim
 The duration of the animation is set to 0.5 seconds. Finally, the animation target is set to the passed circle (Grid) element, and the animation is added to the storyboard.
 
 - #### OnSelectionChanged Method:
-
+- 
 This overridden method is triggered when the selected item in MagicBar changes.
 The method first calls the base class’s OnSelectionChanged method to ensure standard behavior is executed.
 Then, it sets the _vi’s To property based on the index of the selected item, determining the value of Canvas.LeftProperty at the end of the animation. The animation moves the element to a position proportional to the SelectedIndex.
