@@ -87,6 +87,9 @@ This is where Microsoft Blend comes in handy for easily drawing this special sha
 
 The design process involves drawing a large circle with a downward bulging arc at the bottom, then adding a smaller circle at the same height on both sides of the large circle. By adjusting the diameter of the large circle, the large and small circles intersect perfectly.
 
+<img width="1838" alt="스크린샷 2024-01-02 오후 6 26 25" src="https://github.com/vickyqu115/navigationbar/assets/101777355/c59a7f7c-b6eb-4b13-95ff-a700eee8ebcf">
+
+
 Next, using the merge function, we first cut out the unnecessary parts of the large circle, then use the subtract function to remove the unwanted parts of the small circles, leaving only the arc shapes at the junction.
 Finally, by adding a rectangle and removing the unnecessary parts, we can create a unique and natural arc shape.
 
@@ -101,6 +104,9 @@ This innovative design method not only showcases the powerful capabilities of WP
 
 ## 3.Animation Creation
 ### ListBoxItem Area Icon and Text Movement Animation:
+
+![20240103002407247](https://github.com/vickyqu115/navigationbar/assets/101777355/2fe0d794-6c3b-432c-ae5e-aad8038311dc)
+
 
   - We can implement the animation of the icon and text moving up and down in the ListBoxItem area by adding an IsSelected property trigger in XAML. This allows us to define the behavior when a ListBoxItem is selected or deselected.
 
@@ -121,6 +127,8 @@ Here, by adding Selected and UnSelected Storyboards, we display the animation ef
   - Defines the property to be animated, such as Margin or Fill.Color.
 
 ### Circle Component Movement:
+
+
 
 The movement of the circle component needs to be precisely calculated based on the clicked position, and therefore cannot be implemented in XAML but needs to be done in C# code.
 
