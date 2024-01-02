@@ -107,7 +107,6 @@ This innovative design method not only showcases the powerful capabilities of WP
 
 ![20240103002407247](https://github.com/vickyqu115/navigationbar/assets/101777355/2fe0d794-6c3b-432c-ae5e-aad8038311dc)
 
-
   - We can implement the animation of the icon and text moving up and down in the ListBoxItem area by adding an IsSelected property trigger in XAML. This allows us to define the behavior when a ListBoxItem is selected or deselected.
 
 #### Storyboard Concept:
@@ -128,6 +127,7 @@ Here, by adding Selected and UnSelected Storyboards, we display the animation ef
 
 ### Circle Component Movement:
 
+![20240103001946785](https://github.com/vickyqu115/navigationbar/assets/101777355/d9264b98-f7fb-434b-b78c-1671ac8b531a)
 
 
 The movement of the circle component needs to be precisely calculated based on the clicked position, and therefore cannot be implemented in XAML but needs to be done in C# code.
