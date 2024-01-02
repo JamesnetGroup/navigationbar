@@ -73,7 +73,7 @@ In conclusion, Blend is a powerful and accessible tool that enables developers t
 
 
 
-### Visual Design Analysis of the Circle Section
+### 🔵Visual Design Analysis of the Circle Section
 
 In the Magic Navigation Bar project, the Circle section is a visual highlight, enhancing the appeal of the entire navigation bar through clever design and technical implementation.
 
@@ -82,11 +82,13 @@ We created a sense of space and hierarchy visually by adding two circles with di
 
 
 This is where Microsoft Blend comes in handy for easily drawing this special shape.
-#### Drawing Method:
+- #### Drawing Method:
 
 The design process involves drawing a large circle with a downward bulging arc at the bottom, then adding a smaller circle at the same height on both sides of the large circle. By adjusting the diameter of the large circle, the large and small circles intersect perfectly.
+
 Next, using the merge function, we first cut out the unnecessary parts of the large circle, then use the subtract function to remove the unwanted parts of the small circles, leaving only the arc shapes at the junction.
 Finally, by adding a rectangle and removing the unnecessary parts, we can create a unique and natural arc shape.
+
 This innovative design method not only demonstrates the powerful capabilities of WPF and Blend in handling complex graphics but also offers a new perspective in thinking about and solving design challenges. With this approach, the design of the Circle section is not only aesthetically pleasing but also innovative and flexible in technical implementation, adding a unique charm to the entire Magic Navigation Bar.
 
 
