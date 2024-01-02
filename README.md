@@ -43,7 +43,7 @@ In the process of project development, if developers can master certain design s
 
 Microsoft Blend is exactly such a tool. It is designed specifically for WPF and other applications based on XAML, providing a full suite of professional UI design tools. This enables developers and designers to efficiently create complex and appealing user interfaces.
 
-<img width="1186" alt="스크린샷 2024-01-02 오후 11 32 08" src="https://github.com/vickyqu115/navigationbar/assets/101777355/8191a208-f4a8-49ca-bc03-db5618e262a2">
+<img width="511" alt="스크린샷 2024-01-02 오후 11 32 08" src="https://github.com/vickyqu115/navigationbar/assets/101777355/be831284-153d-46dc-889f-46068a98a692">
 
 
 For WPF developers and programmers using XAML, the main advantages of Blend include:
