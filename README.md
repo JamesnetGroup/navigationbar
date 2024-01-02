@@ -19,25 +19,25 @@ The project structure is divided into two parts: the frontend UI and the backend
 Through this project, we can showcase the powerful capabilities of WPF in creating modern, dynamic, and responsive user interfaces. It also demonstrates that WPF can provide elegant and efficient solutions for projects traditionally considered within the realm of frontend development.
 
 
-## XAML Code Explanation:
-### Geometry and Layout
+## XAML Code Explanation
+### 1.Geometry and Layout
 The core of the XAML code in the Magic Navigation Bar is centered around the customization of the ListBoxItem and the clever combination of various elements to create a navigation bar that is both aesthetically pleasing and fully functional.
 
-- #### 1.ListBoxItem Structure:
+- #### ListBoxItem Structure:
 
   - The ListBoxItem serves as the basic building block of the MagicBar. Each ListBoxItem includes an Icon (using JamesIcon) and text (using TextBlock). This structure provides each navigation item with an icon and a corresponding text label, offering an intuitive navigation experience for users.
 
-- #### 2.Use and Customization of Icons:
+- #### Use and Customization of Icons:
 
   - With the jamesnet.wpf library, it becomes easy to add and use a variety of icon materials. This greatly simplifies the process of using icons and allows for the customization of the icons' size and color through custom controls. Such flexibility ensures that each item in the MagicBar is unique yet maintains consistency.
 
-- #### 3.Application of RelativeSource Binding:
+- #### Application of RelativeSource Binding:
 
   - By employing RelativeSource Binding, we can move the TemplateBinding of Icons and Texts, initially defined within the ListBoxItem area, to the JamesIcon and TextBlock areas for individual management.
 This approach allows each component (Icon and Text) to have its own definition and style, making the code more modular, easier to maintain, and reusable. Separating bindings and styles into their respective areas clarifies the overall code structure, making it easier to understand and modify. Furthermore, this separation also provides greater flexibility, as it allows for the individual styling and behavior adjustment of different components without affecting others.
 
 
-### Microsoft Blend: Accelerating WPF and XAML Development
+### 2.Microsoft Blend: Accelerating WPF and XAML Development
 
 In the process of project development, if developers can master certain design skills, it will greatly enhance the aesthetics of the project interface. However, not all developers have the time or interest to learn new technologies. In such cases, choosing tools that are easy to use and developer-friendly for simple graphic design and creation becomes particularly important.
 
@@ -73,10 +73,11 @@ In conclusion, Blend is a powerful and accessible tool that enables developers t
 
 
 
-### 🔵Visual Design Analysis of the Circle Section
+### 🔵 3.Visual Design Analysis of the Circle Section
 
 In the Magic Navigation Bar project, the Circle section is a visual highlight, enhancing the appeal of the entire navigation bar through clever design and technical implementation.
 
+<img width="1156" alt="스크린샷 2023-12-20 오후 8 43 15" src="https://github.com/vickyqu115/navigationbar/assets/101777355/0526a9ef-8d77-4d8c-b62c-91deebb7ea8d">
 
 We created a sense of space and hierarchy visually by adding two circles with different positions and colors. Additionally, to make the transition from the Circle section to the MagicBar area more natural, we designed a smoothly transitioning multi-arc shape. In WPF, there are several ways to implement such a shape, including using pre-drawn images or drawing directly in the project using the Path property. Given the uniqueness and computational complexity of the shape, we sought a simpler and more convenient method.
 
@@ -92,20 +93,6 @@ Finally, by adding a rectangle and removing the unnecessary parts, we can create
 This innovative design method not only demonstrates the powerful capabilities of WPF and Blend in handling complex graphics but also offers a new perspective in thinking about and solving design challenges. With this approach, the design of the Circle section is not only aesthetically pleasing but also innovative and flexible in technical implementation, adding a unique charm to the entire Magic Navigation Bar.
 
 
-
-
-
-## 2. Analysis of the Visual Design of the Circle Component
-In the Magic Navigation Bar project, the Circle component is a visual highlight that enhances the appeal of the entire navigation bar through its ingenious design and technical execution.
-
-We create a sense of spatial depth and layering by adding two circles with different positions and colors. Additionally, to ensure a natural transition from the Circle component to the MagicBar area, we designed a smooth and flowing multi-arc graphic. In WPF, there are various ways to implement such graphics, including using pre-drawn images or directly drawing in the project using the Path attribute. However, due to the unique nature and complexity of the graphic, we sought a simpler and more convenient method.
-
-<img width="1156" alt="스크린샷 2023-12-20 오후 8 43 15" src="https://github.com/vickyqu115/navigationbar/assets/101777355/0526a9ef-8d77-4d8c-b62c-91deebb7ea8d">
-
-
-This approach reminded me of my recent foray into 3D printing, where I often used merging and boolean functions in Blender software to create special-shaped 3D models. In Microsoft Blend, similar methods can be applied to create complex graphics.
-
-The design process involved using a large circle to create a downward protruding arc at the bottom, then adding a smaller circle on each side of the large circle at the same height. By adjusting the diameter of the large circle, we ensured that the large and small circles intersected just right. Next, we used the merge function to remove the unnecessary part of the large circle, followed by the subtract function to eliminate the unwanted parts of the small circles, leaving only the arc shape at the intersections. Finally, by adding a rectangle and removing the unnecessary parts, we achieved a special and natural arc shape.
 
 ![IMG_8875](https://github.com/vickyqu115/navigationbar/assets/101777355/f023aabd-c0bd-4501-8911-c394b3d75fcf)
 
