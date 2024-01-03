@@ -1,4 +1,7 @@
 #  MagicNavigationBar
+
+<br/>
+
 ![KakaoTalk_Photo_2023-12-20-19-57-28](https://github.com/vickyqu115/navigationbar/assets/101777355/93dc0aaf-d4ce-4d4e-abb2-8a1529019b07)
 
 ### Introduction: Project Background and Overview
@@ -27,7 +30,7 @@ The core of the XAML code in the Magic Navigation Bar is centered around the cus
 
   - The ListBoxItem serves as the basic building block of the MagicBar. Each ListBoxItem includes an Icon (using JamesIcon) and text (using TextBlock). This structure provides each navigation item with an icon and a corresponding text label, offering an intuitive navigation experience for users.
 
-```
+```XAML
  <Style TargetType="{x:Type ListBoxItem}" x:Key="MagicBarItem">
         <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
         <Setter Property="Background" Value="Transparent"/>
@@ -48,7 +51,7 @@ The core of the XAML code in the Magic Navigation Bar is centered around the cus
 
   - With the jamesnet.wpf library, it becomes easy to add and use a variety of icon materials. This greatly simplifies the process of using icons and allows for the customization of the icons' size and color through custom controls. Such flexibility ensures that each item in the MagicBar is unique yet maintains consistency.
 
-```
+```XAML
   <Style TargetType="{x:Type james:JamesIcon}" x:Key="Icon">
         <Setter Property="Icon" Value="{Binding RelativeSource={RelativeSource AncestorType=ListBoxItem},Path=Tag}"/>
         <Setter Property="Width" Value="40"/>
@@ -62,7 +65,7 @@ The core of the XAML code in the Magic Navigation Bar is centered around the cus
   - By employing RelativeSource Binding, we can move the TemplateBinding of Icons and Texts, initially defined within the ListBoxItem area, to the JamesIcon and TextBlock areas for individual management.
 This approach allows each component (Icon and Text) to have its own definition and style, making the code more modular, easier to maintain, and reusable. Separating bindings and styles into their respective areas clarifies the overall code structure, making it easier to understand and modify. Furthermore, this separation also provides greater flexibility, as it allows for the individual styling and behavior adjustment of different components without affecting others.
 
-```
+```XAML
  <Style TargetType="{x:Type james:JamesIcon}" x:Key="Icon">
         <Setter Property="Icon" Value="{Binding RelativeSource={RelativeSource AncestorType=ListBoxItem},Path=Tag}"/>
         ... 
@@ -153,7 +156,8 @@ This innovative design method not only showcases the powerful capabilities of WP
 
 A Storyboard in WPF is a container used to define a series of animations. It can contain multiple animation elements that play sequentially or simultaneously on a timeline, creating complex animation sequences.
 Here, by adding Selected and UnSelected Storyboards, we display the animation effect of the icon and text moving positions while simultaneously changing colors.
-```
+
+```XAML
  <ControlTemplate.Triggers>
                         <Trigger Property="IsSelected" Value="True">
                             <Trigger.EnterActions>
@@ -175,7 +179,8 @@ Here, by adding Selected and UnSelected Storyboards, we display the animation ef
   - The total duration of the animation.
 - Property:
   - Defines the property to be animated, such as Margin or Fill.Color.
-```
+
+```XAML
 <Storyboard x:Key="Selected">
         <james:ThickItem Mode="CubicEaseInOut" TargetName="icon" Duration="0:0:0.5" Property="Margin" To="0 -80 0 0"/>
         <james:ThickItem Mode="CubicEaseInOut" TargetName="name" Duration="0:0:0.5" Property="Margin" To="0 45 0 0"/>
