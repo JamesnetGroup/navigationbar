@@ -153,7 +153,18 @@ This innovative design method not only showcases the powerful capabilities of WP
 
 A Storyboard in WPF is a container used to define a series of animations. It can contain multiple animation elements that play sequentially or simultaneously on a timeline, creating complex animation sequences.
 Here, by adding Selected and UnSelected Storyboards, we display the animation effect of the icon and text moving positions while simultaneously changing colors.
-
+```
+ <ControlTemplate.Triggers>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Trigger.EnterActions>
+                                <BeginStoryboard Storyboard="{StaticResource Selected}"/>
+                            </Trigger.EnterActions>
+                            <Trigger.ExitActions>
+                                <BeginStoryboard Storyboard="{StaticResource UnSelected}"/>
+                            </Trigger.ExitActions>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+```
 #### Animation Properties:
 
 - Mode: 
@@ -164,7 +175,21 @@ Here, by adding Selected and UnSelected Storyboards, we display the animation ef
   - The total duration of the animation.
 - Property:
   - Defines the property to be animated, such as Margin or Fill.Color.
+```
+<Storyboard x:Key="Selected">
+        <james:ThickItem Mode="CubicEaseInOut" TargetName="icon" Duration="0:0:0.5" Property="Margin" To="0 -80 0 0"/>
+        <james:ThickItem Mode="CubicEaseInOut" TargetName="name" Duration="0:0:0.5" Property="Margin" To="0 45 0 0"/>
+        <james:ColorItem Mode="CubicEaseInOut" TargetName="icon" Duration="0:0:0.5" Property="Fill.Color" To="#333333"/>
+        <james:ColorItem Mode="CubicEaseInOut" TargetName="name" Duration="0:0:0.5" Property="Foreground.Color" To="#333333"/>
+    </Storyboard>
 
+    <Storyboard x:Key="UnSelected">
+        <james:ThickItem Mode="CubicEaseInOut" TargetName="icon" Duration="0:0:0.5" Property="Margin" To="0 0 0 0"/>
+        <james:ThickItem Mode="CubicEaseInOut" TargetName="name" Duration="0:0:0.5" Property="Margin" To="0 60 0 0"/>
+        <james:ColorItem Mode="CubicEaseInOut" TargetName="icon" Duration="0:0:0.5" Property="Fill.Color" To="#44333333"/>
+        <james:ColorItem Mode="CubicEaseInOut" TargetName="name" Duration="0:0:0.5" Property="Foreground.Color" To="#00000000"/>
+    </Storyboard>
+```
 ### Circle Component Movement:
 
 ![20240103001946785](https://github.com/vickyqu115/navigationbar/assets/101777355/d9264b98-f7fb-434b-b78c-1671ac8b531a)
