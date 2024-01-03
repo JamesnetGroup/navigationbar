@@ -27,15 +27,55 @@ The core of the XAML code in the Magic Navigation Bar is centered around the cus
 
   - The ListBoxItem serves as the basic building block of the MagicBar. Each ListBoxItem includes an Icon (using JamesIcon) and text (using TextBlock). This structure provides each navigation item with an icon and a corresponding text label, offering an intuitive navigation experience for users.
 
+```
+ <Style TargetType="{x:Type ListBoxItem}" x:Key="MagicBarItem">
+        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                    <Grid Background="{TemplateBinding Background}">
+                        <james:JamesIcon x:Name="icon" Style="{StaticResource Icon}"/>
+                        <TextBlock x:Name="name" Style="{StaticResource Name}"/>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+```
+  
 - #### Use and Customization of Icons:
 
   - With the jamesnet.wpf library, it becomes easy to add and use a variety of icon materials. This greatly simplifies the process of using icons and allows for the customization of the icons' size and color through custom controls. Such flexibility ensures that each item in the MagicBar is unique yet maintains consistency.
+
+```
+  <Style TargetType="{x:Type james:JamesIcon}" x:Key="Icon">
+        <Setter Property="Icon" Value="{Binding RelativeSource={RelativeSource AncestorType=ListBoxItem},Path=Tag}"/>
+        <Setter Property="Width" Value="40"/>
+        <Setter Property="Height" Value="40"/>
+        <Setter Property="Fill" Value="#44333333"/>
+    </Style>
+```
 
 - #### Application of RelativeSource Binding:
 
   - By employing RelativeSource Binding, we can move the TemplateBinding of Icons and Texts, initially defined within the ListBoxItem area, to the JamesIcon and TextBlock areas for individual management.
 This approach allows each component (Icon and Text) to have its own definition and style, making the code more modular, easier to maintain, and reusable. Separating bindings and styles into their respective areas clarifies the overall code structure, making it easier to understand and modify. Furthermore, this separation also provides greater flexibility, as it allows for the individual styling and behavior adjustment of different components without affecting others.
 
+```
+ <Style TargetType="{x:Type james:JamesIcon}" x:Key="Icon">
+        <Setter Property="Icon" Value="{Binding RelativeSource={RelativeSource AncestorType=ListBoxItem},Path=Tag}"/>
+        ... 
+        ...
+
+    </Style>
+
+    <Style TargetType="{x:Type TextBlock}" x:Key="Name">
+        <Setter Property="Text" Value="{Binding RelativeSource={RelativeSource AncestorType=ListBoxItem},Path=Content}"/>
+        ... 
+        ...
+    </Style>
+```
 
 ### 2.Microsoft Blend: Accelerating WPF and XAML Development
 
