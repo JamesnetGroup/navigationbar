@@ -266,7 +266,7 @@ The method first calls the base class’s OnSelectionChanged method to ensure st
 Then, it sets the _vi’s To property based on the index of the selected item, determining the value of Canvas.LeftProperty at the end of the animation. The animation moves the element to a position proportional to the SelectedIndex.
 Lastly, by calling _sb.Begin(), the storyboard is started, and the animation is played.
 
-```
+```XAML
  protected override void OnSelectionChanged(SelectionChangedEventArgs e)
         {
             base.OnSelectionChanged(e);
