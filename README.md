@@ -54,7 +54,7 @@ The core of the XAML code in the Magic Navigation Bar is centered around the cus
 
     ```xaml
     <Style TargetType="{x:Type james:JamesIcon}" x:Key="Icon">
-        <Setter Property="Icon" Value="{Binding RelativeSource={RelativeSource AncestorType=ListBoxItem}, Path=Tag}"/>
+        <Setter Property="Icon" Value="{Binding ...}"/>
         <Setter Property="Width" Value="40"/>
         <Setter Property="Height" Value="40"/>
         <Setter Property="Fill" Value="#44333333"/>
@@ -67,17 +67,7 @@ The core of the XAML code in the Magic Navigation Bar is centered around the cus
 This approach allows each component (Icon and Text) to have its own definition and style, making the code more modular, easier to maintain, and reusable. Separating bindings and styles into their respective areas clarifies the overall code structure, making it easier to understand and modify. Furthermore, this separation also provides greater flexibility, as it allows for the individual styling and behavior adjustment of different components without affecting others.
 
     ```xaml
-    <Style TargetType="{x:Type james:JamesIcon}" x:Key="Icon">
-        <Setter Property="Icon"
-                Value="{Binding RelativeSource={RelativeSource AncestorType=ListBoxItem}, Path=Tag}"/>
-        ...
-    </Style>
-    
-    <Style TargetType="{x:Type TextBlock}" x:Key="Name">
-          <Setter Property="Text"
-                  Value="{Binding RelativeSource={RelativeSource AncestorType=ListBoxItem}, Path=Content}"/>
-          ...
-    </Style>
+    Value="{Binding RelativeSource={RelativeSource AncestorType=ListBoxItem}, Path=Tag}"
     ```
 
 ### 2. Microsoft Blend: Accelerating WPF and XAML Development
@@ -141,8 +131,6 @@ Finally, by adding a rectangle and removing the unnecessary parts, we can create
 
 This innovative design method not only demonstrates the powerful capabilities of WPF and Blend in handling complex graphics but also offers a new perspective in thinking about and solving design challenges. With this approach, the design of the Circle section is not only aesthetically pleasing but also innovative and flexible in technical implementation, adding a unique charm to the entire Magic Navigation Bar.
 
-<br/>
-
 ![IMG_8875](https://github.com/vickyqu115/navigationbar/assets/101777355/b6e81e05-2215-45a8-883e-1efa5aac8513)
 
 
@@ -163,7 +151,7 @@ A Storyboard in WPF is a container used to define a series of animations. It can
 Here, by adding Selected and UnSelected Storyboards, we display the animation effect of the icon and text moving positions while simultaneously changing colors.
 
 ```xaml
- <ControlTemplate.Triggers>
+<ControlTemplate.Triggers>
     <Trigger Property="IsSelected" Value="True">
         <Trigger.EnterActions>
             <BeginStoryboard Storyboard="{StaticResource Selected}"/>
@@ -176,28 +164,36 @@ Here, by adding Selected and UnSelected Storyboards, we display the animation ef
 ```
 #### ⚙️ Animation Properties:
 
-- Mode: 
+- #### Mode: 
   - CubicEaseInOut is an easing function used to control the acceleration and deceleration of the animation, making it appear more natural.
-- TargetName: 
+- #### TargetName: 
   - Specifies the name of the element to which the animation is applied.
-- Duration:
+- #### Duration:
   - The total duration of the animation.
-- Property:
+- #### Property:
   - Defines the property to be animated, such as Margin or Fill.Color.
 
     ```xaml
     <Storyboard x:Key="Selected">
-        <james:ThickItem Mode="CubicEaseInOut" TargetName="icon" Duration="0:0:0.5" Property="Margin" To="0 -80 0 0"/>
-        <james:ThickItem Mode="CubicEaseInOut" TargetName="name" Duration="0:0:0.5" Property="Margin" To="0 45 0 0"/>
-        <james:ColorItem Mode="CubicEaseInOut" TargetName="icon" Duration="0:0:0.5" Property="Fill.Color" To="#333333"/>
-        <james:ColorItem Mode="CubicEaseInOut" TargetName="name" Duration="0:0:0.5" Property="Foreground.Color" To="#333333"/>
+        <james:ThickItem Mode="CubicEaseInOut" TargetName="icon"
+                         Duration="0:0:0.5" Property="Margin" To="0 -80 0 0"/>
+        <james:ThickItem Mode="CubicEaseInOut" TargetName="name"
+                         Duration="0:0:0.5" Property="Margin" To="0 45 0 0"/>
+        <james:ColorItem Mode="CubicEaseInOut" TargetName="icon"
+                         Duration="0:0:0.5" Property="Fill.Color" To="#333333"/>
+        <james:ColorItem Mode="CubicEaseInOut" TargetName="name"
+                         Duration="0:0:0.5" Property="Foreground.Color" To="#333333"/>
     </Storyboard>
     
     <Storyboard x:Key="UnSelected">
-        <james:ThickItem Mode="CubicEaseInOut" TargetName="icon" Duration="0:0:0.5" Property="Margin" To="0 0 0 0"/>
-        <james:ThickItem Mode="CubicEaseInOut" TargetName="name" Duration="0:0:0.5" Property="Margin" To="0 60 0 0"/>
-        <james:ColorItem Mode="CubicEaseInOut" TargetName="icon" Duration="0:0:0.5" Property="Fill.Color" To="#44333333"/>
-        <james:ColorItem Mode="CubicEaseInOut" TargetName="name" Duration="0:0:0.5" Property="Foreground.Color" To="#00000000"/>
+        <james:ThickItem Mode="CubicEaseInOut" TargetName="icon"
+                         Duration="0:0:0.5" Property="Margin" To="0 0 0 0"/>
+        <james:ThickItem Mode="CubicEaseInOut" TargetName="name"
+                         Duration="0:0:0.5" Property="Margin" To="0 60 0 0"/>
+        <james:ColorItem Mode="CubicEaseInOut" TargetName="icon"
+                         Duration="0:0:0.5" Property="Fill.Color" To="#44333333"/>
+        <james:ColorItem Mode="CubicEaseInOut" TargetName="name"
+                         Duration="0:0:0.5" Property="Foreground.Color" To="#00000000"/>
     </Storyboard>
     ```
     
