@@ -79,6 +79,7 @@ This approach allows each component (Icon and Text) to have its own definition a
         ...
     </Style>
 ```
+<br/>
 
 ### 2.Microsoft Blend: Accelerating WPF and XAML Development
 
@@ -86,10 +87,13 @@ In the process of project development, if developers can master certain design s
 
 Microsoft Blend is exactly such a tool. It is designed specifically for WPF and other applications based on XAML, providing a full suite of professional UI design tools. This enables developers and designers to efficiently create complex and appealing user interfaces.
 
+<br/>
+
 <img width="511" alt="스크린샷 2024-01-02 오후 11 32 08" src="https://github.com/vickyqu115/navigationbar/assets/101777355/be831284-153d-46dc-889f-46068a98a692">
 
+<br/>
 
-For WPF developers and programmers using XAML, the main advantages of Blend include:
+### For WPF developers and programmers using XAML, the main advantages of Blend include:
 
 - ### Intuitive Visual Design Tools:
   - Blend offers a WYSIWYG interface, enabling developers to intuitively create and edit user interfaces. This is particularly useful for designing complex layouts and animations.
@@ -120,7 +124,11 @@ In conclusion, Blend is a powerful and accessible tool that enables developers t
 
 In the Magic Navigation Bar project, the Circle section is a visual highlight, enhancing the appeal of the entire navigation bar through clever design and technical implementation.
 
+<br/>
+
 <img width="1156" alt="스크린샷 2023-12-20 오후 8 43 15" src="https://github.com/vickyqu115/navigationbar/assets/101777355/0526a9ef-8d77-4d8c-b62c-91deebb7ea8d">
+
+<br/>
 
 We created a sense of space and hierarchy visually by adding two circles with different positions and colors. Additionally, to make the transition from the Circle section to the MagicBar area more natural, we designed a smoothly transitioning multi-arc shape. In WPF, there are several ways to implement such a shape, including using pre-drawn images or drawing directly in the project using the Path property. Given the uniqueness and computational complexity of the shape, we sought a simpler and more convenient method.
 
@@ -130,8 +138,11 @@ This is where Microsoft Blend comes in handy for easily drawing this special sha
 
 The design process involves drawing a large circle with a downward bulging arc at the bottom, then adding a smaller circle at the same height on both sides of the large circle. By adjusting the diameter of the large circle, the large and small circles intersect perfectly.
 
+<br/>
+
 <img width="1838" alt="스크린샷 2024-01-02 오후 6 26 25" src="https://github.com/vickyqu115/navigationbar/assets/101777355/c59a7f7c-b6eb-4b13-95ff-a700eee8ebcf">
 
+<br/>
 
 Next, using the merge function, we first cut out the unnecessary parts of the large circle, then use the subtract function to remove the unwanted parts of the small circles, leaving only the arc shapes at the junction.
 Finally, by adding a rectangle and removing the unnecessary parts, we can create a unique and natural arc shape.
