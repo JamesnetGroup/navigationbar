@@ -54,7 +54,7 @@ The core of the XAML code in the Magic Navigation Bar is centered around the cus
 
     ```xaml
     <Style TargetType="{x:Type james:JamesIcon}" x:Key="Icon">
-        <Setter Property="Icon" Value="{Binding RelativeSource={RelativeSource AncestorType=ListBoxItem},Path=Tag}"/>
+        <Setter Property="Icon" Value="{Binding RelativeSource={RelativeSource AncestorType=ListBoxItem}, Path=Tag}"/>
         <Setter Property="Width" Value="40"/>
         <Setter Property="Height" Value="40"/>
         <Setter Property="Fill" Value="#44333333"/>
@@ -68,15 +68,14 @@ This approach allows each component (Icon and Text) to have its own definition a
 
     ```xaml
     <Style TargetType="{x:Type james:JamesIcon}" x:Key="Icon">
-        <Setter Property="Icon" Value="{Binding RelativeSource={RelativeSource AncestorType=ListBoxItem},Path=Tag}"/>
-        ... 
+        <Setter Property="Icon"
+                Value="{Binding RelativeSource={RelativeSource AncestorType=ListBoxItem}, Path=Tag}"/>
         ...
-    
     </Style>
     
     <Style TargetType="{x:Type TextBlock}" x:Key="Name">
-          <Setter Property="Text" Value="{Binding RelativeSource={RelativeSource AncestorType=ListBoxItem},Path=Content}"/>
-          ... 
+          <Setter Property="Text"
+                  Value="{Binding RelativeSource={RelativeSource AncestorType=ListBoxItem}, Path=Content}"/>
           ...
     </Style>
     ```
