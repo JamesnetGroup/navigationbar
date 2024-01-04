@@ -22,9 +22,7 @@ WPF 기술에 대한 깊은 열정을 가진 개발자로서, 저는 WPF의 잠�
 Magic Navigation Bar의 XAML 코드 핵심은 ListBoxItem의 사용자 정의와 다양한 요소들의 현명한 조합을 통해 미적으로 만족스럽고 완전히 기능하는 네비게이션 바를 만드는 데 중점을 둡니다.
 ### ListBoxItem 구조:
 ListBoxItem은 MagicBar의 기본 구성 요소입니다. 각 ListBoxItem은 아이콘(JamesIcon 사용)과 텍스트(TextBlock 사용)를 포함합니다. 이 구조는 각 탐색 항목에 아이콘과 해당 텍스트 레이블을 제공하여 사용자에게 직관적인 탐색 경험을 제공합니다.
-```
-xml
-Copy code
+```xaml
 <Style TargetType="{x:Type ListBoxItem}" x:Key="MagicBarItem">
     <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
     <Setter Property="Background" Value="Transparent"/>
@@ -44,9 +42,7 @@ Copy code
 
 jamesnet.wpf 라이브러리를 사용하면 다양한 아이콘 자료를 쉽게 추가하고 사용할 수 있습니다. 이를 통해 아이콘 사용 과정이 크게 단순화되며, 사용자 정의 컨트롤을 통해 아이콘의 크기와 색상을 사용자 지정할 수 있습니다. 이러한 유연성은 MagicBar의 각 항목이 독특하면서도 일관성을 유지하도록 보장합니다.
 
-```
-xml
-Copy code
+```xaml
 <Style TargetType="{x:Type james:JamesIcon}" x:Key="Icon">
     <Setter Property="Icon" Value="{Binding ...}"/>
     <Setter Property="Width" Value="40"/>
@@ -58,7 +54,7 @@ Copy code
 
 ### RelativeSource 바인딩 적용:
 RelativeSource 바인딩을 사용함으로써, 우리는 ListBoxItem 영역 내에 처음 정의된 아이콘과 텍스트의 TemplateBinding을 JamesIcon 및 TextBlock 영역으로 개별적으로 이동시킬 수 있습니다. 이 접근법은 각 구성 요소(아이콘 및 텍스트)가 자체 정의와 스타일을 가질 수 있게 하여, 코드를 더 모듈화하고 유지 관리하기 쉽고 재사용 가능하게 만듭니다. 바인딩과 스타일을 각각의 영역으로 분리함으로써 전체 코드 구조를 명확하게 하여 이해하고 수정하기 쉽게 만듭니다. 또한, 이러한 분리는 더 큰 유연성을 제공하여, 다른 구성 요소에 영향을 주지 않고 개별 구성 요소의 스타일과 행동을 조정할 수 있습니다.
-```
+```xaml
 Value="{Binding RelativeSource={RelativeSource AncestorType=ListBoxItem}, Path=Tag}"
 ```
 ## 2. Microsoft Blend: WPF 및 XAML 개발 가속화
@@ -67,19 +63,19 @@ Value="{Binding RelativeSource={RelativeSource AncestorType=ListBoxItem}, Path=T
 Microsoft Blend는 바로 그런 도구입니다. 이는 WPF 및 기타 XAML 기반 애플리케이션을 위해 특별히 설계되었으며, 전문적인 UI 디자인 도구의 전체 스위트를 제공합니다. 이를 통해 개발자와 디자이너는 효율적으로 복잡하고 매력적인 사용자 인터페이스를 생성할 수 있습니다.
 
 ### WPF 개발자와 XAML을 사용하는 프로그래머들에게 Blend의 주요 장점은 다음과 같습니다:
-#### 직관적인 비주얼 디자인 도구:
+- #### 직관적인 비주얼 디자인 도구:
 Blend는 WYSIWYG 인터페이스를 제공하여 개발자들이 직관적으로 사용자 인터페이스를 생성하고 편집할 수 있게 합니다. 이는 복잡한 레이아웃과 애니메이션을 디자인하는 데 특히 유용합니다.
-#### UI 구성 요소 및 스타일 편집 지원:
+- #### UI 구성 요소 및 스타일 편집 지원:
 Blend는 사용자 정의 컨트롤, 스타일, 템플릿을 포함한 고급 UI 요소의 생성 및 편집을 지원합니다. 강력한 스타일링 및 리소스 관리 기능으로 깔끔하고 정돈된 코드를 유지할 수 있습니다.
-#### 경로 도구 및 모양 편집:
+- #### 경로 도구 및 모양 편집:
 Blend의 경로 도구와 모양 편집 기능은 복잡한 그래픽 생성을 단순화합니다.
-#### 통합 코드 편집 및 Visual Studio 통합:
+- #### 통합 코드 편집 및 Visual Studio 통합:
 Blend는 비주얼 디자인뿐만 아니라 코드 편집기도 제공하여 애플리케이션 내에서 코드의 직접 편집 및 디버깅을 가능하게 합니다. Visual Studio와의 원활한 통합으로 개발자들에게 완벽한 개발 및 디자인 환경을 제공합니다.
-#### 애니메이션 및 비주얼 상태 관리:
+- #### 애니메이션 및 비주얼 상태 관리:
 Blend를 사용하면 개발자들은 복잡한 애니메이션과 비주얼 상태를 쉽게 디자인할 수 있습니다. 직관적인 타임라인과 애니메이션 도구로 애니메이션 생성 및 조정 과정을 단순화합니다.
-#### 신속한 프로토타이핑 및 반복:
+- #### 신속한 프로토타이핑 및 반복:
 Blend는 신속한 프로토타이핑을 가능하게 하여, 디자이너와 개발자들이 빠르게 UI 개념을 생성하고 피드백에 기반한 반복을 할 수 있게 합니다.
-#### 크로스 플랫폼 지원:
+- #### 크로스 플랫폼 지원:
 Blend는 WPF뿐만 아니라 UWP 및 Silverlight와 같은 다른 XAML 기반 플랫폼도 지원하여 크로스 플랫폼 개발을 용이하게 합니다.
 
 결론적으로, Blend는 개발자들이 광범위한 디자인 학습 없이도 전문적이고 매력적인 사용자 인터페이스를 생성할 수 있게 하는 강력하고 접근하기 쉬운 도구로, 프로젝트의 전반적인 품질과 사용자 경험을 향상시킵니다.
@@ -103,7 +99,7 @@ Blend는 WPF뿐만 아니라 UWP 및 Silverlight와 같은 다른 XAML 기반 �
 XAML에서 IsSelected 속성 트리거를 추가함으로써 ListBoxItem 영역에서 아이콘과 텍스트가 상하로 움직이는 애니메이션을 구현할 수 있습니다. ListBoxItem이 선택되거나 선택 해제될 때의 동작을 정의할 수 있습니다.
 ### Storyboard 개념:
 WPF에서 Storyboard는 일련의 애니메이션을 정의하는 데 사용되는 컨테이너입니다. 시간축에서 순차적 또는 동시에 재생되는 여러 애니메이션 요소를 포함할 수 있어 복잡한 애니메이션 시퀀스를 만들 수 있습니다. 여기에서, 선택된 및 선택되지 않은 Storyboard를 추가하여 아이콘과 텍스트의 위치를 이동하면서 동시에 색상을 변경하는 애니메이션 효과를 표시합니다.
-```
+```xaml
 <ControlTemplate.Triggers>
 <Trigger Property="IsSelected" Value="True">
 <Trigger.EnterActions>
@@ -124,7 +120,7 @@ CubicEaseInOut은 애니메이션의 가속 및 감속을 제어하는 이징 �
 애니메이션의 총 지속 시간입니다.
 - ### Property:
 Margin 또는 Fill.Color과 같은 애니메이션을 적용할 속성을 정의합니다.
-```
+```xaml
 <Storyboard x:Key="Selected">
     <james:ThickItem Mode="CubicEaseInOut" TargetName="icon"
                      Duration="0:0:0.5" Property="Margin" To="0 -80 0 0"/>
@@ -185,7 +181,7 @@ private void InitStoryboard(Grid circle)
 OnSelectionChanged 메소드:
 이 오버라이드된 메소드는 MagicBar의 선택된 항목이 변경될 때 트리거됩니다. 메소드는 기본 클래스의 OnSelectionChanged 메소드를 호출하여 표준 동작이 실행되도록 합니다. 그런 다음, 선택된 항목의 인덱스를 기준으로 _vi의 To 속성을 설정하여 애니메이션 종료 시 Canvas.LeftProperty의 값을 결정합니다. 애니메이션은 요소를 SelectedIndex에 비례하는 위치로 이동시킵니다. 마지막으로 _sb.Begin()을 호출함으로써 스토리보드가 시작되고 애니메이션이 재생됩니다.
 
-```
+```css
 protected override void OnSelectionChanged(SelectionChangedEventArgs e)
 {
     base.OnSelectionChanged(e);
