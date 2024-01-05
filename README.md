@@ -28,10 +28,7 @@ The core of the XAML code in the Magic Navigation Bar is centered around the cus
 - #### ListBoxItem Structure:
 
   - The ListBoxItem serves as the basic building block of the MagicBar. Each ListBoxItem includes an Icon (using JamesIcon) and text (using TextBlock). This structure provides each navigation item with an icon and a corresponding text label, offering an intuitive navigation experience for users.
-
-
-
-
+  - 
     ```xaml
     <Style TargetType="{x:Type ListBoxItem}" x:Key="MagicBarItem">
         <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
