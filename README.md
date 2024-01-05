@@ -21,7 +21,6 @@ The project structure is divided into two parts: the frontend UI and the backend
 
 Through this project, we can showcase the powerful capabilities of WPF in creating modern, dynamic, and responsive user interfaces. It also demonstrates that WPF can provide elegant and efficient solutions for projects traditionally considered within the realm of frontend development.
 
-
 ## XAML Code Explanation
 ### 1. Geometry and Layout
 The core of the XAML code in the Magic Navigation Bar is centered around the customization of the ListBoxItem and the clever combination of various elements to create a navigation bar that is both aesthetically pleasing and fully functional.
