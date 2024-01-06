@@ -45,7 +45,7 @@ The core of the XAML code in the Magic Navigation Bar is centered around the cus
         </Setter>
     </Style>
     ```
-    
+  
 - #### Use and Customization of Icons:
 
   - With the jamesnet.wpf library, it becomes easy to add and use a variety of icon materials. This greatly simplifies the process of using icons and allows for the customization of the icons' size and color through custom controls. Such flexibility ensures that each item in the MagicBar is unique yet maintains consistency.
@@ -62,7 +62,7 @@ The core of the XAML code in the Magic Navigation Bar is centered around the cus
 - #### Application of RelativeSource Binding:
 
   - By employing RelativeSource Binding, we can move the TemplateBinding of Icons and Texts, initially defined within the ListBoxItem area, to the JamesIcon and TextBlock areas for individual management.
-This approach allows each component (Icon and Text) to have its own definition and style, making the code more modular, easier to maintain, and reusable. Separating bindings and styles into their respective areas clarifies the overall code structure, making it easier to understand and modify. Furthermore, this separation also provides greater flexibility, as it allows for the individual styling and behavior adjustment of different components without affecting others.
+    This approach allows each component (Icon and Text) to have its own definition and style, making the code more modular, easier to maintain, and reusable. Separating bindings and styles into their respective areas clarifies the overall code structure, making it easier to understand and modify. Furthermore, this separation also provides greater flexibility, as it allows for the individual styling and behavior adjustment of different components without affecting others.
 
     ```xaml
     Value="{Binding RelativeSource={RelativeSource AncestorType=ListBoxItem}, Path=Tag}"
@@ -195,6 +195,7 @@ Here, by adding Selected and UnSelected Storyboards, we display the animation ef
     </Storyboard>
     ```
     
+
 <br/>
 
 ### ✨ Circle Component Movement:
@@ -249,9 +250,9 @@ The duration of the animation is set to 0.5 seconds. Finally, the animation targ
 - #### OnSelectionChanged Method:
   
   This overridden method is triggered when the selected item in MagicBar changes.
-The method first calls the base class’s OnSelectionChanged method to ensure standard behavior is executed.
-Then, it sets the _vi’s To property based on the index of the selected item, determining the value of Canvas.LeftProperty at the end of the animation. The animation moves the element to a position proportional to the SelectedIndex.
-Lastly, by calling _sb.Begin(), the storyboard is started, and the animation is played.
+  The method first calls the base class’s OnSelectionChanged method to ensure standard behavior is executed.
+  Then, it sets the _vi’s To property based on the index of the selected item, determining the value of Canvas.LeftProperty at the end of the animation. The animation moves the element to a position proportional to the SelectedIndex.
+  Lastly, by calling _sb.Begin(), the storyboard is started, and the animation is played.
 
   ```csharp
   protected override void OnSelectionChanged(SelectionChangedEventArgs e)
