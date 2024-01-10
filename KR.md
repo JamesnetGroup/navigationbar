@@ -240,20 +240,17 @@ ListBoxItem 영역에서의 Animation 동작 방식은 IsSelected 값이 true일
 
 ```xaml
 <Storyboard x:Key="Selected">
-    <james:ThickItem Mode="CubicEaseInOut" 
-                     TargetName="icon"
-                     Duration="0:0:0.5" 
-                     Property="Margin" 
-                     To="0 -80 0 0"/>
-    ...
+	<james:ThickItem Mode="CubicEaseInOut" TargetName="icon" Duration="0:0:0.5" Property="Margin" To="0 -80 0 0"/>
+	<james:ThickItem Mode="CubicEaseInOut" TargetName="name" Duration="0:0:0.5" Property="Margin" To="0 45 0 0"/>
+	<james:ColorItem Mode="CubicEaseInOut" TargetName="icon" Duration="0:0:0.5" Property="Fill.Color" To="#333333"/>
+	<james:ColorItem Mode="CubicEaseInOut" TargetName="name" Duration="0:0:0.5" Property="Foreground.Color" To="#333333"/>
 </Storyboard>
+
 <Storyboard x:Key="UnSelected">
-    <james:ThickItem Mode="CubicEaseInOut" 
-                     TargetName="icon"
-                     Duration="0:0:0.5" 
-                     Property="Margin" 
-                     To="0 0 0 0"/>
-    ...
+	<james:ThickItem Mode="CubicEaseInOut" TargetName="icon" Duration="0:0:0.5" Property="Margin" To="0 0 0 0"/>
+	<james:ThickItem Mode="CubicEaseInOut" TargetName="name" Duration="0:0:0.5" Property="Margin" To="0 60 0 0"/>
+	<james:ColorItem Mode="CubicEaseInOut" TargetName="icon" Duration="0:0:0.5" Property="Fill.Color" To="#44333333"/>
+	<james:ColorItem Mode="CubicEaseInOut" TargetName="name" Duration="0:0:0.5" Property="Foreground.Color" To="#00000000"/>
 </Storyboard>
 ```
 
