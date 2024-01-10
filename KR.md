@@ -76,13 +76,53 @@ ItemsPresenter 요소는 ItemsPanelTemplate을 통해 지정된 Panel 종류에 
 ```xaml
 <ControlTemplate TargetType="{x:Type ListBox}">
     <Grid>
-	    <Circle/>
+        <Circle/>
     	<ItemsPresenter/>
     </Grid>
 </ControlTemplate>
 ```
 
 위에서 보는 것과 같이 ItemsPresenter와 Circle의 위치가 계층적으로 동일한 레벨에 위치하도록 하는 것이 핵심입니다. 이를 통해 Circle 요소의 Animiation 범위를 마치 ItemsPresenter 자식 요소를 자유롭게 넘나드는 것처럼 배치하는 것이 핵심 포인트입니다. 또한 ListBoxItem 요소의 아이콘과 텍스트가 시각적으로 Circle을 가리지 않도록 해야 하기 때문에 ItemsPresenter 요소를 Circle 보다 앞(Front)으로 배치하는 것입니다.
+
+이론적인 이야기를 나누었으니, 실제 구현된 소스코드를 통해 자세하게 비교해보겠습니다.
+> x:Name="PART_Circle" 영역이 바로 Circle에 해당됩니다.
+```xaml
+<Style TargetType="{x:Type local:MagicBar}">
+<Setter Property="ItemContainerStyle" Value="{StaticResource MagicBarItem}"/>
+<Setter Property="SnapsToDevicePixels" Value="True"/>
+<Setter Property="UseLayoutRounding" Value="True"/>
+<Setter Property="Background" Value="Transparent"/>
+<Setter Property="Width" Value="440"/>
+<Setter Property="Height" Value="120"/>
+<Setter Property="Template">
+    <Setter.Value>
+	<ControlTemplate TargetType="{x:Type local:MagicBar}">
+	    <Grid Background="{TemplateBinding Background}">
+		<Grid.Clip>
+		    <RectangleGeometry Rect="0 0 440 120"/>
+		</Grid.Clip>
+		<Border Style="{StaticResource Bar}"/>
+		<Canvas Margin="20 0 20 0">
+		    <Grid x:Name="PART_Circle" Style="{StaticResource Circle}">
+			<Path Style="{StaticResource Arc}"/>
+			<Ellipse Fill="#222222"/>
+			<Ellipse Fill="CadetBlue" Margin="6"/>
+		    </Grid>
+		</Canvas>
+		<ItemsPresenter Margin="20 40 20 0"/>
+	    </Grid>
+	</ControlTemplate>
+    </Setter.Value>
+</Setter>
+<Setter Property="ItemsPanel">
+    <Setter.Value>
+	<ItemsPanelTemplate>
+	    <UniformGrid Columns="5"/>
+	</ItemsPanelTemplate>
+    </Setter.Value>
+</Setter>
+</Style>
+```
 
 #### ListBoxItem Template 구성
 
@@ -305,6 +345,206 @@ protected override void OnSelectionChanged(SelectionChangedEventArgs e)
 ```
 
 이 메서드에서는 선택된 메뉴가 변경될 떄마다 SelectedIndex 값을 통해 위치를 동적으로 계산하여 To 값을 변경하는 로직을 구현합니다.
+
+### 5. 마무리: CustomControl 전체 소스코드 확인
+마지막으로, MagicBar 컨트롤의 XAML/Csharp 코드의 전체 구성을 살펴볼 차례입니다. 이 컨트롤이 CustomControl 구조하에 얼마나 간결하고 우아하게 구현되어 있는지 한눈에 볼 시간입니다.
+
+#### Generic.xaml
+> 다양한 기능이 구현되었지만, XAML 구조를 최대한 간결화시킨 모습을 살펴볼 수 있습니다. 특히 MagicBar에 포함된 ControlTemplate 구조는 복잡한 레이어 계층을 단순화 하여 한 눈에 볼 수 있도록 구성한 것이 특징입니다. 그 외에도 Storyboard, Geometry, TextBlock, JamesIcon과 같은 작은 요소들 까지도 규칙적으로 정리된 모습입니다. 
+
+```xaml
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:james="https://jamesnet.dev/xaml/presentation"
+    xmlns:local="clr-namespace:NavigationBar">
+
+    <Storyboard x:Key="Selected">
+        <james:ThickItem Mode="CubicEaseInOut" TargetName="icon" Duration="0:0:0.5" Property="Margin" To="0 -80 0 0"/>
+        <james:ThickItem Mode="CubicEaseInOut" TargetName="name" Duration="0:0:0.5" Property="Margin" To="0 45 0 0"/>
+        <james:ColorItem Mode="CubicEaseInOut" TargetName="icon" Duration="0:0:0.5" Property="Fill.Color" To="#333333"/>
+        <james:ColorItem Mode="CubicEaseInOut" TargetName="name" Duration="0:0:0.5" Property="Foreground.Color" To="#333333"/>
+    </Storyboard>
+
+    <Storyboard x:Key="UnSelected">
+        <james:ThickItem Mode="CubicEaseInOut" TargetName="icon" Duration="0:0:0.5" Property="Margin" To="0 0 0 0"/>
+        <james:ThickItem Mode="CubicEaseInOut" TargetName="name" Duration="0:0:0.5" Property="Margin" To="0 60 0 0"/>
+        <james:ColorItem Mode="CubicEaseInOut" TargetName="icon" Duration="0:0:0.5" Property="Fill.Color" To="#44333333"/>
+        <james:ColorItem Mode="CubicEaseInOut" TargetName="name" Duration="0:0:0.5" Property="Foreground.Color" To="#00000000"/>
+    </Storyboard>
+    
+    <Style TargetType="{x:Type james:JamesIcon}" x:Key="Icon">
+        <Setter Property="Icon" Value="{Binding RelativeSource={RelativeSource AncestorType=ListBoxItem},Path=Tag}"/>
+        <Setter Property="Width" Value="40"/>
+        <Setter Property="Height" Value="40"/>
+        <Setter Property="Fill" Value="#44333333"/>
+    </Style>
+
+    <Style TargetType="{x:Type TextBlock}" x:Key="Name">
+        <Setter Property="Text" Value="{Binding RelativeSource={RelativeSource AncestorType=ListBoxItem},Path=Content}"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="Foreground" Value="#00000000"/>
+        <Setter Property="Margin" Value="0 60 0 0"/>
+    </Style>
+    
+    <Style TargetType="{x:Type ListBoxItem}" x:Key="MagicBarItem">
+        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                    <Grid Background="{TemplateBinding Background}">
+                        <james:JamesIcon x:Name="icon" Style="{StaticResource Icon}"/>
+                        <TextBlock x:Name="name" Style="{StaticResource Name}"/>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Trigger.EnterActions>
+                                <BeginStoryboard Storyboard="{StaticResource Selected}"/>
+                            </Trigger.EnterActions>
+                            <Trigger.ExitActions>
+                                <BeginStoryboard Storyboard="{StaticResource UnSelected}"/>
+                            </Trigger.ExitActions>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    
+    <Geometry x:Key="ArcData">
+        M0,0 L100,0 C95.167503,0 91.135628,3.4278221 90.203163,7.9846497 L90.152122,8.2704506 89.963921,9.1416779 C85.813438,27.384438 69.496498,41 50,41 30.5035,41 14.186564,27.384438 10.036079,9.1416779 L9.8478823,8.2704926 9.7968359,7.9846497 C8.8643732,3.4278221 4.8324914,0 0,0 z
+    </Geometry>
+
+    <Style TargetType="{x:Type Path}" x:Key="Arc">
+        <Setter Property="Data" Value="{StaticResource ArcData}"/>
+        <Setter Property="Width" Value="100"/>
+        <Setter Property="Height" Value="100"/>
+        <Setter Property="Fill" Value="#222222"/>
+        <Setter Property="Margin" Value="-10 40 -10 -1"/>
+    </Style>
+    
+    <Style TargetType="{x:Type Border}" x:Key="Bar">
+        <Setter Property="Background" Value="#DDDDDD"/>
+        <Setter Property="Margin" Value="0 40 0 0"/>
+        <Setter Property="CornerRadius" Value="10"/>
+    </Style>
+
+    <Style TargetType="{x:Type Grid}" x:Key="Circle">
+        <Setter Property="Width" Value="80"/>
+        <Setter Property="Height" Value="80"/>
+        <Setter Property="Canvas.Left" Value="-100"/>
+    </Style>
+    
+    <Style TargetType="{x:Type local:MagicBar}">
+        <Setter Property="ItemContainerStyle" Value="{StaticResource MagicBarItem}"/>
+        <Setter Property="SnapsToDevicePixels" Value="True"/>
+        <Setter Property="UseLayoutRounding" Value="True"/>
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Width" Value="440"/>
+        <Setter Property="Height" Value="120"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:MagicBar}">
+                    <Grid Background="{TemplateBinding Background}">
+                        <Grid.Clip>
+                            <RectangleGeometry Rect="0 0 440 120"/>
+                        </Grid.Clip>
+                        <Border Style="{StaticResource Bar}"/>
+                        <Canvas Margin="20 0 20 0">
+                            <Grid x:Name="PART_Circle" Style="{StaticResource Circle}">
+                                <Path Style="{StaticResource Arc}"/>
+                                <Ellipse Fill="#222222"/>
+                                <Ellipse Fill="CadetBlue" Margin="6"/>
+                            </Grid>
+                        </Canvas>
+                        <ItemsPresenter Margin="20 40 20 0"/>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="ItemsPanel">
+            <Setter.Value>
+                <ItemsPanelTemplate>
+                    <UniformGrid Columns="5"/>
+                </ItemsPanelTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>
+```
+
+#### MagicBar.cs
+> OnApplyTemplate을 통해 단절되어 있는 Controltemplate 요소를 찾아내는 과정은 WPF의 상징과도 같은 매우 중요하고 근본적인 작업입니다. 약속된 PART_Circle 객체(Grid)를 찾아와서, 메뉴가 변경될 때마다 Circle의 이동(Move) 애니메이션을 동적으로 구성하여 동작시키는 행위는 WPF의 생명력을 매우 활동적으로 보일 수 있도록 하게 됩니다.
+
+```csharp
+﻿using Jamesnet.Wpf.Animation;
+using Jamesnet.Wpf.Controls;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Animation;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
+namespace NavigationBar
+{
+
+    public class MagicBar : ListBox
+    {
+        private ValueItem _vi;
+        private Storyboard _sb;
+
+        static MagicBar()
+        {
+            DefaultStyleKeyProperty.OverrideMetadata(typeof(MagicBar), new FrameworkPropertyMetadata(typeof(MagicBar)));
+        }
+
+        public override void OnApplyTemplate()
+        {
+            base.OnApplyTemplate();
+            Grid grid = (Grid)GetTemplateChild("PART_Circle");
+
+            InitStoryboard(grid);
+        }
+
+        private void InitStoryboard(Grid circle)
+        {
+            _vi = new();
+            _sb = new();
+
+            _vi.Mode = EasingFunctionBaseMode.QuinticEaseInOut;
+            _vi.Property = new PropertyPath(Canvas.LeftProperty);
+            _vi.Duration = new Duration(new TimeSpan(0, 0, 0, 0, 500));
+
+            Storyboard.SetTarget(_vi, circle);
+            Storyboard.SetTargetProperty(_vi, _vi.Property);
+
+            _sb.Children.Add(_vi);
+        }
+
+        protected override void OnSelectionChanged(SelectionChangedEventArgs e)
+        {
+            base.OnSelectionChanged(e);
+
+            _vi.To = SelectedIndex * 80;
+            _sb.Begin();
+        }
+    }
+}
+```
+
+이처럼, 평소에는 UserControl을 통해 구현할 만한 규모의 기능을 컨트롤 단위의 CustomControl 방식으로 구현한다면 더욱 세련되고 효율적인 모듈화를 이뤄낼 수 있습니다.
 
 이로써 주요 기능들에 대한 설명을 마칩니다.  이 컨트롤의 자세한 내용은 GitHub 소스코드를 통해서도 무료로 다운로드할 수 있으며, [유튜브](https://youtube.com/@jamesnet214) 또는 [빌리빌리](https://bil)를 통해 각각 영어/중국어로 상세하게 제공되고 있으니 XAML 기반의 플랫폼에서 다양하게 연구되고 활용되기를 기대합니다.
 
