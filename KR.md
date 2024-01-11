@@ -49,7 +49,7 @@ CustomControl은 XAML Design 영역을 분리하여 관리하는 것이 특징�
 
 
 
-## XAML 구성
+## 1. XAML 구성
 
 #### Geometry 소개
 
