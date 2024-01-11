@@ -1,152 +1,257 @@
-#  MagicNavigationBar
+<img src="https://github.com/vickyqu115/navigationbar/assets/101777355/e67922b2-dd19-4c14-a1be-66266c4ff248" width="700px"/>
 
-<br/>
+## Introduction
+WPF applications traditionally prefer a programmatic approach that connects multiple screens through menu configurations and presents them in a unified manner. This technique, often referred to as the menu or Navigation, is one of the core implementations in WPF. It also has a direct correlation with the architecture (design) of the project, so paying more attention to its implementation can positively impact the quality of the project.
 
-<img width="511" alt="스크린샷 2024-01-02 오후 11 32 08" src="https://github.com/vickyqu115/navigationbar/assets/101777355/93dc0aaf-d4ce-4d4e-abb2-8a1529019b07">
+This control features a design and animations specialized for mobile, but it can be elegantly and structurally implemented using ListBox and Animation technologies available in WPF. Additionally, it can be similarly implemented in Cross-Platform environments such as AvaloniaUI, Uno, OpenSilver, MAUI, which allows this project to be researched and applied across various platforms.
 
-### Introduction: Project Background and Overview
-As a developer deeply passionate about WPF technology, I firmly believe in its potential far beyond what we usually perceive. WPF is not just a powerful UI framework; its diversity and superior performance offer developers a vast space for creativity. My goal is to gradually unveil these aspects of WPF through various projects, providing technical support and inspiration to those interested in or currently working with WPF technology.
+The goal is also to widely promote the flexibility and excellence of WPF implementation and share the technology. Through this project, we hope you will deeply experience the charm of WPF.
 
-### The Design Philosophy of Magic Navigation Bar:
-The essence of this project is to create a simplistic yet vibrant Magic Navigation Bar. In the contemporary world of programming, similar navigation bars are typically implemented using HTML, CSS, and JavaScript. The advantage of these technologies lies in their widespread application and flexibility. HTML provides the structure, CSS handles the styling and layout, and JavaScript manages interaction and animation. Together, they create visually appealing and functionally robust web applications.
+## Learning through Tutorial Videos and CodeProject Article
+This control comes with a tutorial video, approximately 30 minutes long, available in English and Chinese audio with Korean subtitles. Creating a tutorial video requires more time and effort than one might think, and while it's challenging, your encouragement and support are becoming a great motivation.
 
-However, constructing such a project with WPF technology is often perceived as complex and challenging, especially in terms of project structure and animation presentation. This is where the challenge lies: with a deep understanding of the flexibility and powerful capabilities of WPF, not only can this process be simplified, but it can also be elegantly implemented through code.
+You can learn more through the following platforms:
+
+- Youtube: [English/Korean Tutorial Video](https://www.youtube.com/watch?v=dxuLWlukthg)
+- BiliBili: [Chinese Tutorial Video](https://www.bilibili.com/video/BV1Ui4y1a717/?spm_id_from=333.999.0.0&vd_source=f62a1783ac9166a4d798823ad1861fd2)
+- CodeProject：[Article](https://www.codeproject.com/Articles/5375482/Customizing-ListBox-for-a-Smooth-Animated-Navigati)
+- GitHub：[Navigationbar](https://github.com/vickyqu115/navigationbar/edit/main/README.md)
+
+Additionally, check out other tutorial videos like ThemeSwitch, Lol-PlayButton, etc.
+
+
+## Design and Structural Philosophy
+
+![293724702-d9264b98-f7fb-434b-b78c-1671ac8b531a](https://github.com/vickyqu115/navigationbar/assets/101777355/7b360df7-b62b-440b-a43d-d5b4926d4b7b)
+
+
+This control style is one used widely through web or mobile navigation configurations. Therefore, it's commonly seen implemented using IOS, Android, or HTML/CSS technologies. Implementing it with CSS/HTML and JavaScript allows for relatively easy construction of structure and animation functions. In contrast, WPF, through XAML, might feel comparatively complex in terms of design, event, and animation implementation. Thus, the key to this control's implementation is to make the most of WPF's characteristics and provide a high-level implementation method that lets users feel the structural strengths of WPF.
+
+A lot of focus has been put into the quality of the Source code through Refactoring. The project minimizes/optimizes hierarchical XAML structures and emphasizes enhancing code quality through interaction between XAML and Behind code using CustomControl. The control isn't just about providing basic functionality; it's about conveying technical inspiration and encouraging diverse applications through its structural philosophy.
 
 ## Project Overview
-### The Power of WPF:
-In this project, we leverage the formidable capabilities of WPF, particularly the rich combination of XAML and C# backend code, to construct a visually appealing and fully functional Magic Navigation Bar. WPF allows us to design UIs using a declarative language (XAML), while utilizing the strong typing and object-oriented features of C# to handle logic and behavior. This combination provides immense flexibility for creating complex and dynamic UIs.
 
-### Structure and Implementation:
-The project structure is divided into two parts: the frontend UI and the backend logic. In the UI segment, we utilize XAML to define the layout, style, and animations of the controls. This includes defining the appearance of controls, implementing animation effects, and responding to user interactions. In the C# backend code, we handle user interaction events, control the playback of animations, and manage the state changes of controls. This structure not only ensures clarity and maintainability of the code but also separates UI from logic, enhancing the reusability and scalability of the code.
+#### MagicBar.cs
+MagicBar, the core control of this project, is a CustomControl inheriting from ListBox control. In most development scenarios, UserControl is the usual choice, but for functions involving complex features, animations, and repetitive elements like in this case, it's more effective to divide and implement them as smaller Control (CustomControl) units.
 
-Through this project, we can showcase the powerful capabilities of WPF in creating modern, dynamic, and responsive user interfaces. It also demonstrates that WPF can provide elegant and efficient solutions for projects traditionally considered within the realm of frontend development.
+If you're not familiar with CustomControl, please read the following:
 
-## XAML Code Explanation
-### 1. Geometry and Layout
-The core of the XAML code in the Magic Navigation Bar is centered around the customization of the ListBoxItem and the clever combination of various elements to create a navigation bar that is both aesthetically pleasing and fully functional.
+> The CustomControl approach itself is technically challenging and conceptually different from traditional desktop methods like Windows Forms, making it somewhat difficult to approach easily. Additionally, finding reference materials for guidance is challenging. However, this is an important process to elevate your WPF technical skills. We encourage you to open-mindedly take on the challenge of CustomControl implementation with this opportunity.
 
-- #### ListBoxItem Structure:
+#### Generic.xaml
+CustomControl is characterized by its separation and management of the XAML Design area. Therefore, it doesn't provide direct interaction between the XAML area and the control (Class). Interaction between these two areas is supported through other indirect methods. The first method involves exploring the Template area through the OnApplyTemplate timing. The second method extends binding through DependencyProperty declarations.
 
-  - The ListBoxItem serves as the basic building block of the MagicBar. Each ListBoxItem includes an Icon (using JamesIcon) and text (using TextBlock). This structure provides each navigation item with an icon and a corresponding text label, offering an intuitive navigation experience for users.
-  - 
-    ```xaml
-    <Style TargetType="{x:Type ListBoxItem}" x:Key="MagicBarItem">
-        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
-        <Setter Property="Background" Value="Transparent"/>
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="{x:Type ListBoxItem}">
-                    <Grid Background="{TemplateBinding Background}">
-                        <james:JamesIcon x:Name="icon" Style="{StaticResource Icon}"/>
-                        <TextBlock x:Name="name" Style="{StaticResource Name}"/>
-                    </Grid>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
-    ```
-  
-- #### Use and Customization of Icons:
+This structural feature allows for a perfect separation of design and code, enhancing code reusability and extensibility, and understanding the traditional structure of WPF in depth. All controls used in WPF follow this same method. To verify this, you can directly explore the open-source dotnet/WPF repository available on GitHub.
 
-  - With the jamesnet.wpf library, it becomes easy to add and use a variety of icon materials. This greatly simplifies the process of using icons and allows for the customization of the icons' size and color through custom controls. Such flexibility ensures that each item in the MagicBar is unique yet maintains consistency.
+## 1. XAML Configuration
 
-    ```xaml
-    <Style TargetType="{x:Type james:JamesIcon}" x:Key="Icon">
-        <Setter Property="Icon" Value="{Binding ...}"/>
-        <Setter Property="Width" Value="40"/>
-        <Setter Property="Height" Value="40"/>
-        <Setter Property="Fill" Value="#44333333"/>
-    </Style>
-    ```
+#### Introduction to Geometry
 
-- #### Application of RelativeSource Binding:
+Geometry is one of the design elements provided in WPF, used for vector-based designs. Traditionally, development methods preferred bitmap images like PNG or JPEG, but there's a growing preference for vector-based designs in recent times. This change can be attributed to improvements in computer performance, developments in monitor resolutions, and shifts in design trends. Hence, the role of Geometry elements is significant in this control. The process of implementing the Circle in the latter part is explained in more detail.
 
-  - By employing RelativeSource Binding, we can move the TemplateBinding of Icons and Texts, initially defined within the ListBoxItem area, to the JamesIcon and TextBlock areas for individual management.
-    This approach allows each component (Icon and Text) to have its own definition and style, making the code more modular, easier to maintain, and reusable. Separating bindings and styles into their respective areas clarifies the overall code structure, making it easier to understand and modify. Furthermore, this separation also provides greater flexibility, as it allows for the individual styling and behavior adjustment of different components without affecting others.
+#### Separation of Animation Elements and ItemsPresenter
 
-    ```xaml
-    Value="{Binding RelativeSource={RelativeSource AncestorType=ListBoxItem}, Path=Tag}"
-    ```
+MagicBar inherits from the ListBox control and uniquely uses the ItemsPresenter element provided through the ItemsControl feature. However, interaction between child elements within the ItemsPresenter is not possible, implying that continuing Animation actions among child items is also unfeasible.
 
-### 2. Microsoft Blend: Accelerating WPF and XAML Development
+The behavior of ListBoxItem is determined by the type of Panel specified through the ItemsPanelTemplate in the ItemsPresenter element. Therefore, the choice of Panel layout significantly affects the behavior of ListBoxItem. In the case of StackPanel, the order of the added child elements in the Children collection determines their position. For Grid, placement is determined by Row/Column settings.
 
-In the process of project development, if developers can master certain design skills, it will greatly enhance the aesthetics of the project interface. However, not all developers have the time or interest to learn new technologies. In such cases, choosing tools that are easy to use and developer-friendly for simple graphic design and creation becomes particularly important.
+Thus, linking Animation actions between child elements structurally is not possible.
 
-Microsoft Blend is exactly such a tool. It is designed specifically for WPF and other applications based on XAML, providing a full suite of professional UI design tools. This enables developers and designers to efficiently create complex and appealing user interfaces.
+> However, there are exceptions. In the case of Canvas, interaction through Animation is possible using the concept of coordinates, but it requires complex calculations and precise implementation for all controls. Yet, better implementation methods exist, so Canvas control content is omitted in this context.
 
-<img width="511" alt="스크린샷 2024-01-02 오후 11 32 08" src="https://github.com/vickyqu115/navigationbar/assets/101777355/be831284-153d-46dc-889f-46068a98a692">
+#### ListBox ControlTemplate Hierarchy
+Usually, in implementing ListBox control, greater emphasis is placed on the child element ListBoxItem. However, for this control, the key feature - the Circle structure - needs to be positioned outside the area of the ItemsPresenter element. Therefore, forming a complex Template in the ListBox control is crucial.
 
-<br/>
+The hierarchy of the ControlTemplate is as follows:
 
-#### For WPF developers and programmers using XAML, the main advantages of Blend include:
+> The following is a simplified representation for clarity and differs from the actual Source code content. The Circle part can easily be found in the text as "PART_Circle".
 
-- #### Intuitive Visual Design Tools:
-  - Blend offers a WYSIWYG interface, enabling developers to intuitively create and edit user interfaces. This is particularly useful for designing complex layouts and animations.
+```xaml
+<ControlTemplate TargetType="{x:Type ListBox}">
+     <Grid>         
+        <Circle/>         
+        <ItemsPresenter/>     
+     </Grid> 
+</ControlTemplate>
+```
 
-- #### Support for UI Component and Style Editing:
-  - Blend supports the creation and editing of advanced UI elements, including custom controls, styles, and templates. Its powerful styling and resource management capabilities help maintain clean and organized code.
+As seen above, the key is to position the ItemsPresenter and Circle at the same hierarchical level. This arrangement allows the Circle element's Animation range to appear as if freely moving across the ItemsPresenter's child elements. Moreover, it's essential to place the ItemsPresenter element in front of the Circle so that the ListBoxItem element's icons and text do not visually cover the Circle.
 
-- #### Path Tools and Shape Editing:
-  - Blend's path tools and shape editing capabilities simplify the creation of complex graphics.
+Having discussed the theory, let's now delve into the actual source code for a detailed comparison.
 
-- #### Integrated Code Editing and Visual Studio Integration:
-  - Blend focuses not only on visual design but also provides a code editor, allowing direct editing and debugging of code within the application. Its seamless integration with Visual Studio offers developers a complete development and design environment.
+> The area with x:Name="PART_Circle" corresponds to the Circle.
 
-- #### Animation and Visual State Management:
-  - With Blend, developers can easily design complex animations and visual states. Its intuitive timeline and animation tools simplify the process of creating and adjusting animations.
+```xaml
+<Style TargetType="{x:Type local:MagicBar}">
+<Setter Property="ItemContainerStyle" Value="{StaticResource MagicBarItem}"/>
+<Setter Property="SnapsToDevicePixels" Value="True"/>
+<Setter Property="UseLayoutRounding" Value="True"/>
+<Setter Property="Background" Value="Transparent"/>
+<Setter Property="Width" Value="440"/>
+<Setter Property="Height" Value="120"/>
+<Setter Property="Template">
+    <Setter.Value>
+    	<ControlTemplate TargetType="{x:Type local:MagicBar}">
+    	    <Grid Background="{TemplateBinding Background}">
+    		<Grid.Clip>
+    		    <RectangleGeometry Rect="0 0 440 120"/>
+    		</Grid.Clip>
+    		<Border Style="{StaticResource Bar}"/>
+    		<Canvas Margin="20 0 20 0">
+    		    <Grid x:Name="PART_Circle" Style="{StaticResource Circle}">
+    			<Path Style="{StaticResource Arc}"/>
+    			<Ellipse Fill="#222222"/>
+    			<Ellipse Fill="CadetBlue" Margin="6"/>
+    		    </Grid>
+    		</Canvas>
+    		<ItemsPresenter Margin="20 40 20 0"/>
+    	    </Grid>
+    	</ControlTemplate>
+    </Setter.Value>
+</Setter>
+<Setter Property="ItemsPanel">
+    <Setter.Value>
+    	<ItemsPanelTemplate>
+    	    <UniformGrid Columns="5"/>
+    	</ItemsPanelTemplate>
+    </Setter.Value>
+  </Setter>
+</Style>
+```
 
-- #### Rapid Prototyping and Iteration:
-  - Blend enables rapid prototyping, allowing designers and developers to quickly create and test UI concepts and iterate based on feedback.
+#### ListBoxItem Template Configuration
 
-- #### Cross-Platform Support:
-  - Besides WPF, Blend also supports other XAML-based platforms such as UWP and Silverlight, facilitating cross-platform development.
+Unlike the ListBox control's Template, the configuration of the ListBoxItem is relatively simple. Also, since it's unrelated to the Circle Animation element, it comprises only the menu item's icon and text.
 
-<br/>
+```xaml
+<Style TargetType="{x:Type ListBoxItem}" x:Key="MagicBarItem">
+    <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+    <Setter Property="Background" Value="Transparent"/>
+    <Setter Property="Template">
+        <Setter.Value>
+            <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                <Grid Background="{TemplateBinding Background}">
+                    <james:JamesIcon x:Name="icon" Style="{StaticResource Icon}"/>
+                    <TextBlock x:Name="name" Style="{StaticResource Name}"/>
+                </Grid>
+            </ControlTemplate>
+        </Setter.Value>
+    </Setter>
+</Style>
+```
 
-In conclusion, Blend is a powerful and accessible tool that enables developers to create professional and attractive user interfaces without extensive design learning, thereby enhancing the overall quality and user experience of the project.
+In addition, Animation that changes the position and color of the icon and text is included. As previously mentioned, no special functionality needs to be implemented in this ListBoxItem element.
 
+> JamesIcon is a control provided through the Jamesnet.Wpf library available via NuGet, offering various icons. To substitute it, you can either use the Path control for direct Geometry design implementation or use images with a transparent (Transparent) background.
 
-<br/>
+#### JamesIcon Style
 
-### 3. 🔵Visual Design Analysis of the Circle Section
+JamesIcon internally includes a Path control and provides various DependencyProperty attributes to allow flexible design definitions from the outside. Key properties include Icon, Width, Height, Fill, etc.
 
-In the Magic Navigation Bar project, the Circle section is a visual highlight, enhancing the appeal of the entire navigation bar through clever design and technical implementation.
+> Vector-based Geometry icons offer consistent designs, which is one way to enhance the quality of the control. Therefore, it's worth examining these differences closely.
 
-<img width="1156" alt="스크린샷 2023-12-20 오후 8 43 15" src="https://github.com/vickyqu115/navigationbar/assets/101777355/0526a9ef-8d77-4d8c-b62c-91deebb7ea8d"></img>
+```xaml
+<Style TargetType="{x:Type james:JamesIcon}" x:Key="Icon">
+    <Setter Property="Icon" Value="{TemplateBinding Tag}"/>
+    <Setter Property="Width" Value="40"/>
+    <Setter Property="Height" Value="40"/>
+    <Setter Property="Fill" Value="#44333333"/>
+</Style>
+```
 
-We created a sense of space and hierarchy visually by adding two circles with different positions and colors. Additionally, to make the transition from the Circle section to the MagicBar area more natural, we designed a smoothly transitioning multi-arc shape. In WPF, there are several ways to implement such a shape, including using pre-drawn images or drawing directly in the project using the Path property. Given the uniqueness and computational complexity of the shape, we sought a simpler and more convenient method.
+#### RelativeSource Binding
 
-This is where Microsoft Blend comes in handy for easily drawing this special shape.
+Since the JamesIcon style is separated from the Template, it's impossible to use TemplateBinding Tag binding as shown below:
 
-- #### Drawing Method:
+```xaml
+// Binding method that's not possible</code>
+<Setter Property="Icon" Value="{TemplateBinding Tag}"/>
+```
 
-  The design process involves drawing a large circle with a downward bulging arc at the bottom, then adding a smaller circle at the same height on both sides of the large circle. By adjusting the diameter of the large circle, the large and small circles intersect perfectly.
+Therefore, RelativeSource binding is used to search for the ListBoxItem, the parent element, and bind its Tag property, as shown below:
 
-<img width="1838" alt="스크린샷 2024-01-02 오후 6 26 25" src="https://github.com/vickyqu115/navigationbar/assets/101777355/c59a7f7c-b6eb-4b13-95ff-a700eee8ebcf"></img>
+```xaml
+<... Value="{Binding RelativeSource={RelativeSource AncestorType=ListBoxItem}, Path=Tag}"/>
+```
 
-Next, using the merge function, we first cut out the unnecessary parts of the large circle, then use the subtract function to remove the unwanted parts of the small circles, leaving only the arc shapes at the junction.
-Finally, by adding a rectangle and removing the unnecessary parts, we can create a unique and natural arc shape.
+Using RelativeSource binding, the original TemplateBinding of the icon defined within the ListBoxItem area can be individually moved to the JamesIcon area. This approach allows each component (JamesIcon) to have its own definition and style, making the code more modular, easier to maintain, and reusable. Separating bindings and styles into their respective areas clarifies the overall code structure, making it easier to understand and modify. Additionally, this separation provides greater flexibility, allowing individual components' styles and behaviors to be adjusted without affecting other components.
 
-This innovative design method not only demonstrates the powerful capabilities of WPF and Blend in handling complex graphics but also offers a new perspective in thinking about and solving design challenges. With this approach, the design of the Circle section is not only aesthetically pleasing but also innovative and flexible in technical implementation, adding a unique charm to the entire Magic Navigation Bar.
+## 2. Microsoft Blend: Geometry Design
 
-![IMG_8875](https://github.com/vickyqu115/navigationbar/assets/101777355/b6e81e05-2215-45a8-883e-1efa5aac8513)
+<img src="https://github.com/vickyqu115/navigationbar/assets/101777355/45dfe12a-3d42-47c1-b514-08167854f5dd" width="700px"/>
 
+Microsoft Blend, the successor to Expression Blend, continues to hold its name despite a reduction in certain features. This program can be added during the installation process of Visual Studio. If you can't find this program, it's possible to add it via the Visual Studio Installer.
 
-This innovative design method not only showcases the powerful capabilities of WPF and Blend in handling complex graphics but also offers a new perspective in thinking about and solving design challenges. Through this approach, the Circle component's design is not only aesthetically pleasing but also innovative and flexible in its technical execution, adding unique charm to the entire Magic Navigation Bar.
+Although Microsoft Blend shares most features with Visual Studio, it includes some additional features specialized in design. Among them are functions related to Geometry, partially resembling features found in Adobe's Illustrator.
 
-## 3.Animation Creation
-### ✨ ListBoxItem Area Icon and Text Movement Animation:
+Using Microsoft Blend in WPF development isn't essential, nor is it exclusively for designers. Instead, it serves as a valuable tool for developers to create professional and attractive design elements without extensive design training.
 
-<br/>
+> However, most of the design features provided by Microsoft Blend can be more powerfully utilized in environments like Figma and Illustrator, so there's no pressing need to learn it. But some features related to Geometry are easy to use without separate training, and thus worth examining closely.
 
-![20240103002407247](https://github.com/vickyqu115/navigationbar/assets/101777355/2fe0d794-6c3b-432c-ae5e-aad8038311dc)
+#### Analysis of Circle (🔵) Design
+The Circle in the MagicBar control is a crucial point of this project, visually functioning as the menu changes. It includes smooth Animation, adding a contemporary and trendy design element.
 
-  - We can implement the animation of the icon and text moving up and down in the ListBoxItem area by adding an IsSelected property trigger in XAML. This allows us to define the behavior when a ListBoxItem is selected or deselected.
+The Circle element doesn't necessarily have to be implemented based on Geometry. Using an image could be a simpler method. However, in terms of quality, Geometry designs are becoming more popular as they can handle resolution changes due to size variations more delicately.
 
-#### Storyboard Concept:
+> As shown in the image below, a characteristic of Geometry is that you can resize it as much as you want without losing clarity.
 
-A Storyboard in WPF is a container used to define a series of animations. It can contain multiple animation elements that play sequentially or simultaneously on a timeline, creating complex animation sequences.
-Here, by adding Selected and UnSelected Storyboards, we display the animation effect of the icon and text moving positions while simultaneously changing colors.
+<img src="https://github.com/vickyqu115/navigationbar/assets/101777355/68ea4882-3a93-4a59-b6fc-35cc8db5e9bc" width="700px"/>
+
+If you look closely at the Circle design, you'll see that it creates a sense of space by overlapping a black circle and a green circle. Additionally, rounding the lines on both sides makes it blend naturally into the MagicBar area. This not only looks visually smooth but also appears more elegant when animated. However, implementing this arc can be challenging and is often abandoned during practical implementation.
+
+But this is where Microsoft Blend becomes useful in easily creating these special shapes.
+
+#### Drawing Method
+
+The design process involves drawing a large circle with a convex arc at the bottom, then adding smaller circles of the same height on both sides of the large circle. By adjusting the diameter of the large circle, ensure that the large and small circles intersect perfectly.
+
+<img src="https://github.com/vickyqu115/navigationbar/assets/101777355/14f6023a-ade3-4694-8c91-687a2f46df8b" width="700px"/>
+
+Next, use the merge function to cut the unnecessary parts of the large circle and the subtract function to remove unwanted parts of the small circle, leaving only the arc shape at the intersection. Finally, add a rectangle and remove unnecessary parts to create a unique and natural arc shape.
+
+<img src="https://github.com/vickyqu115/navigationbar/assets/101777355/5c6823e3-1cb7-4dea-9b75-0837aed2d31e" width="700px"/>
+
+This method of implementing design elements not only demonstrates how to use Microsoft Blend for complex graphics but also provides a new perspective on thinking and solving design problems. This approach makes the circle not only aesthetically appealing but also technically innovative, enhancing quality.
+
+## 3. Animation: ListBoxItem
+
+The animation behavior in the ListBoxItem area, which includes icons and text, is relatively simple. It features moving components upwards and adjusting opacity transparency when IsSelected is set to true.
+
+> Please carefully observe the animation path and effects through the image below:
+
+<img src="https://github.com/vickyqu115/navigationbar/assets/101777355/102fb540-2ee5-46e5-8ba3-1978d48613bc" width="700px"/>
+
+As shown in the image above, the animation is triggered each time the IsSelected value of the ListBox control changes. Additionally, since the movement of the icon and text doesn't go beyond the ListBoxItem area, it's preferable to implement a static Storyboard element directly within XAML.
+
+> This can be controlled using a Trigger or VisualStateManager module. For this control, a simple Trigger module approach is utilized for handling just the IsSelected action.
+
+#### Storyboard
+
+For the ListBoxItem area's animation behavior, it's necessary to prepare scenarios for both when IsSelected is true and when it's false.
+
+```xaml
+<Storyboard x:Key="Selected">
+	<james:ThickItem Mode="CubicEaseInOut" TargetName="icon" Duration="0:0:0.5" Property="Margin" To="0 -80 0 0"/>
+	<james:ThickItem Mode="CubicEaseInOut" TargetName="name" Duration="0:0:0.5" Property="Margin" To="0 45 0 0"/>
+	<james:ColorItem Mode="CubicEaseInOut" TargetName="icon" Duration="0:0:0.5" Property="Fill.Color" To="#333333"/>
+	<james:ColorItem Mode="CubicEaseInOut" TargetName="name" Duration="0:0:0.5" Property="Foreground.Color" To="#333333"/>
+</Storyboard>
+
+<Storyboard x:Key="UnSelected">
+	<james:ThickItem Mode="CubicEaseInOut" TargetName="icon" Duration="0:0:0.5" Property="Margin" To="0 0 0 0"/>
+	<james:ThickItem Mode="CubicEaseInOut" TargetName="name" Duration="0:0:0.5" Property="Margin" To="0 60 0 0"/>
+	<james:ColorItem Mode="CubicEaseInOut" TargetName="icon" Duration="0:0:0.5" Property="Fill.Color" To="#44333333"/>
+	<james:ColorItem Mode="CubicEaseInOut" TargetName="name" Duration="0:0:0.5" Property="Foreground.Color" To="#00000000"/>
+</Storyboard>
+```
+
+> The key here is specifying the movement path in 'Selected' and the return path in 'UnSelected'.
+
+#### Trigger
+
+Finally, the implementation of animation in the ListBoxItem area concludes by declaring BeginStoryboard using Trigger to activate the respective (Selected/UnSelected) Storyboards.
+
+> Unlike typical Trigger property changes, animations require a return scenario as well.
 
 ```xaml
 <ControlTemplate.Triggers>
@@ -160,106 +265,272 @@ Here, by adding Selected and UnSelected Storyboards, we display the animation ef
     </Trigger>
 </ControlTemplate.Triggers>
 ```
-#### ⚙️ Animation Properties:
 
-- #### Mode: 
-  - CubicEaseInOut is an easing function used to control the acceleration and deceleration of the animation, making it appear more natural.
-- #### TargetName: 
-  - Specifies the name of the element to which the animation is applied.
-- #### Duration:
-  - The total duration of the animation.
-- #### Property:
-  - Defines the property to be animated, such as Margin or Fill.Color.
+The method of configuring animation in the ListBoxItem area is relatively simple. However, implementing the movement of the Circle component, which is introduced next, requires more complex calculations for dynamic behavior.
 
-    ```xaml
+## 4. Movement of the Circle Component
+
+Now it's time to implement the animation for the movement of the Circle component. Below is a video showing the dynamic movement of the Circle.
+
+![293724702-d9264b98-f7fb-434b-b78c-1671ac8b531a](https://github.com/vickyqu115/navigationbar/assets/101777355/7b360df7-b62b-440b-a43d-d5b4926d4b7b)
+
+The movement of the Circle component must be precisely calculated based on the clicked position, so it can't be implemented in XAML and needs to be handled dynamically in C# code. Therefore, a method for connecting XAML and Code Behind is required.
+
+#### OnApplyTemplate
+
+This method is used to retrieve the Circle area inside the MagicBar control. It's called internally at the connection point between the control and the template. Hence, it's implemented in the MagicBar class via override.
+
+Then, the 'PART_Circle' named circle element is searched using the GetTemplateChild method. This Grid will be the target element for displaying the animation effect during interaction.
+
+```csharp
+public override void OnApplyTemplate()
+{
+    base.OnApplyTemplate();
+    Grid grid = (Grid)GetTemplateChild("PART_Circle");
+
+    InitStoryboard(grid);
+}
+```
+
+#### InitStoryboard
+
+This method initializes the animation. Instances of ValueItem (_vi) and Storyboard (_sb) are created first. The animation effect set in ValueItem is QuinticEaseInOut, which slows down at the start and end of the animation, making it look smooth and natural.
+
+The movement path for the Circle is specified as Canvas.LeftProperty, meaning it changes the horizontal position of the target element. The duration of the animation is set to 0.5 seconds. Finally, the animation target is set as the Circle component (Grid), and the defined animation is added to the storyboard.
+
+```csharp
+private void InitStoryboard(Grid circle)
+{
+    _vi = new();
+    _sb = new();
+
+    _vi.Mode = EasingFunctionBaseMode.QuinticEaseInOut;
+    _vi.Property = new PropertyPath(Canvas.LeftProperty);
+    _vi.Duration = new Duration(new TimeSpan(0, 0, 0, 0, 500));
+
+    Storyboard.SetTarget(_vi, circle);
+    Storyboard.SetTargetProperty(_vi, _vi.Property);
+
+    _sb.Children.Add(_vi);
+}
+```
+
+#### OnSelectionChanged
+
+The scenario for moving the Circle component is now implemented. In the MagicBar class, the OnSelectionChanged event method is implemented to handle the 'PART_Circle' (Grid) element and to execute (Begin) the storyboard.
+
+> The MagicBar control, being a CustomControl derived from ListBox, has the advantage of flexibly implementing override features.
+
+```C#
+protected override void OnSelectionChanged(SelectionChangedEventArgs e)
+{
+    base.OnSelectionChanged(e);
+
+    _vi.To = SelectedIndex * 80;
+    _sb.Begin();
+}
+```
+In this method, the logic to dynamically calculate and change the To value based on the SelectedIndex is implemented every time the selected menu changes.
+
+## 5. Conclusion: Examining the Complete Source Code of the CustomControl
+
+Finally, it's time to take a look at the complete structure of the XAML/Csharp code for the MagicBar control. This is an opportunity to see how elegantly and succinctly the control is implemented within the CustomControl structure.
+
+#### Generic.xaml
+> Despite the implementation of various features, you can observe the maximally streamlined structure of XAML. Notably, the ControlTemplate structure included in the MagicBar simplifies complex layer hierarchies for easy viewing. Additionally, even small elements like Storyboard, Geometry, TextBlock, and JamesIcon are organized in a regular and systematic manner.
+
+```xaml
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:james="https://jamesnet.dev/xaml/presentation"
+    xmlns:local="clr-namespace:NavigationBar">
+
     <Storyboard x:Key="Selected">
-        <james:ThickItem Mode="CubicEaseInOut" TargetName="icon"
-                         Duration="0:0:0.5" Property="Margin" To="0 -80 0 0"/>
-        <james:ThickItem Mode="CubicEaseInOut" TargetName="name"
-                         Duration="0:0:0.5" Property="Margin" To="0 45 0 0"/>
-        <james:ColorItem Mode="CubicEaseInOut" TargetName="icon"
-                         Duration="0:0:0.5" Property="Fill.Color" To="#333333"/>
-        <james:ColorItem Mode="CubicEaseInOut" TargetName="name"
-                         Duration="0:0:0.5" Property="Foreground.Color" To="#333333"/>
+        <james:ThickItem Mode="CubicEaseInOut" TargetName="icon" Duration="0:0:0.5" Property="Margin" To="0 -80 0 0"/>
+        <james:ThickItem Mode="CubicEaseInOut" TargetName="name" Duration="0:0:0.5" Property="Margin" To="0 45 0 0"/>
+        <james:ColorItem Mode="CubicEaseInOut" TargetName="icon" Duration="0:0:0.5" Property="Fill.Color" To="#333333"/>
+        <james:ColorItem Mode="CubicEaseInOut" TargetName="name" Duration="0:0:0.5" Property="Foreground.Color" To="#333333"/>
     </Storyboard>
-    
+
     <Storyboard x:Key="UnSelected">
-        <james:ThickItem Mode="CubicEaseInOut" TargetName="icon"
-                         Duration="0:0:0.5" Property="Margin" To="0 0 0 0"/>
-        <james:ThickItem Mode="CubicEaseInOut" TargetName="name"
-                         Duration="0:0:0.5" Property="Margin" To="0 60 0 0"/>
-        <james:ColorItem Mode="CubicEaseInOut" TargetName="icon"
-                         Duration="0:0:0.5" Property="Fill.Color" To="#44333333"/>
-        <james:ColorItem Mode="CubicEaseInOut" TargetName="name"
-                         Duration="0:0:0.5" Property="Foreground.Color" To="#00000000"/>
+        <james:ThickItem Mode="CubicEaseInOut" TargetName="icon" Duration="0:0:0.5" Property="Margin" To="0 0 0 0"/>
+        <james:ThickItem Mode="CubicEaseInOut" TargetName="name" Duration="0:0:0.5" Property="Margin" To="0 60 0 0"/>
+        <james:ColorItem Mode="CubicEaseInOut" TargetName="icon" Duration="0:0:0.5" Property="Fill.Color" To="#44333333"/>
+        <james:ColorItem Mode="CubicEaseInOut" TargetName="name" Duration="0:0:0.5" Property="Foreground.Color" To="#00000000"/>
     </Storyboard>
-    ```
     
+    <Style TargetType="{x:Type james:JamesIcon}" x:Key="Icon">
+        <Setter Property="Icon" Value="{Binding RelativeSource={RelativeSource AncestorType=ListBoxItem},Path=Tag}"/>
+        <Setter Property="Width" Value="40"/>
+        <Setter Property="Height" Value="40"/>
+        <Setter Property="Fill" Value="#44333333"/>
+    </Style>
 
-<br/>
+    <Style TargetType="{x:Type TextBlock}" x:Key="Name">
+        <Setter Property="Text" Value="{Binding RelativeSource={RelativeSource AncestorType=ListBoxItem},Path=Content}"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="Foreground" Value="#00000000"/>
+        <Setter Property="Margin" Value="0 60 0 0"/>
+    </Style>
+    
+    <Style TargetType="{x:Type ListBoxItem}" x:Key="MagicBarItem">
+        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                    <Grid Background="{TemplateBinding Background}">
+                        <james:JamesIcon x:Name="icon" Style="{StaticResource Icon}"/>
+                        <TextBlock x:Name="name" Style="{StaticResource Name}"/>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Trigger.EnterActions>
+                                <BeginStoryboard Storyboard="{StaticResource Selected}"/>
+                            </Trigger.EnterActions>
+                            <Trigger.ExitActions>
+                                <BeginStoryboard Storyboard="{StaticResource UnSelected}"/>
+                            </Trigger.ExitActions>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    
+    <Geometry x:Key="ArcData">
+        M0,0 L100,0 C95.167503,0 91.135628,3.4278221 90.203163,7.9846497 L90.152122,8.2704506 89.963921,9.1416779 C85.813438,27.384438 69.496498,41 50,41 30.5035,41 14.186564,27.384438 10.036079,9.1416779 L9.8478823,8.2704926 9.7968359,7.9846497 C8.8643732,3.4278221 4.8324914,0 0,0 z
+    </Geometry>
 
-### ✨ Circle Component Movement:
+    <Style TargetType="{x:Type Path}" x:Key="Arc">
+        <Setter Property="Data" Value="{StaticResource ArcData}"/>
+        <Setter Property="Width" Value="100"/>
+        <Setter Property="Height" Value="100"/>
+        <Setter Property="Fill" Value="#222222"/>
+        <Setter Property="Margin" Value="-10 40 -10 -1"/>
+    </Style>
+    
+    <Style TargetType="{x:Type Border}" x:Key="Bar">
+        <Setter Property="Background" Value="#DDDDDD"/>
+        <Setter Property="Margin" Value="0 40 0 0"/>
+        <Setter Property="CornerRadius" Value="10"/>
+    </Style>
 
-<br/>
+    <Style TargetType="{x:Type Grid}" x:Key="Circle">
+        <Setter Property="Width" Value="80"/>
+        <Setter Property="Height" Value="80"/>
+        <Setter Property="Canvas.Left" Value="-100"/>
+    </Style>
+    
+    <Style TargetType="{x:Type local:MagicBar}">
+        <Setter Property="ItemContainerStyle" Value="{StaticResource MagicBarItem}"/>
+        <Setter Property="SnapsToDevicePixels" Value="True"/>
+        <Setter Property="UseLayoutRounding" Value="True"/>
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Width" Value="440"/>
+        <Setter Property="Height" Value="120"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:MagicBar}">
+                    <Grid Background="{TemplateBinding Background}">
+                        <Grid.Clip>
+                            <RectangleGeometry Rect="0 0 440 120"/>
+                        </Grid.Clip>
+                        <Border Style="{StaticResource Bar}"/>
+                        <Canvas Margin="20 0 20 0">
+                            <Grid x:Name="PART_Circle" Style="{StaticResource Circle}">
+                                <Path Style="{StaticResource Arc}"/>
+                                <Ellipse Fill="#222222"/>
+                                <Ellipse Fill="CadetBlue" Margin="6"/>
+                            </Grid>
+                        </Canvas>
+                        <ItemsPresenter Margin="20 40 20 0"/>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="ItemsPanel">
+            <Setter.Value>
+                <ItemsPanelTemplate>
+                    <UniformGrid Columns="5"/>
+                </ItemsPanelTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>
+```
 
-![20240103001946785](https://github.com/vickyqu115/navigationbar/assets/101777355/d9264b98-f7fb-434b-b78c-1671ac8b531a)
+#### MagicBar.cs
 
+> The process of locating the disjointed ControlTemplate elements through OnApplyTemplate is a very important and fundamental task, akin to a symbol of WPF. Finding the designated PART_Circle object (Grid) and dynamically composing and activating the Circle's movement (Move) animation whenever the menu changes serves to vividly demonstrate the vitality and dynamic capabilities of WPF.
 
-The movement of the circle component needs to be precisely calculated based on the clicked position, and therefore cannot be implemented in XAML but needs to be done in C# code.
+```csharp
+using Jamesnet.Wpf.Animation;
+using Jamesnet.Wpf.Controls;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Animation;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
+namespace NavigationBar
+{
 
-- #### OnApplyTemplate Method:
+    public class MagicBar : ListBox
+    {
+        private ValueItem _vi;
+        private Storyboard _sb;
 
-  This is an important method in the lifecycle of the MagicBar control. It is called when the control’s template is applied.
-Inside the method, we first call the base class’s OnApplyTemplate method to ensure all standard initialization steps are executed.
-Then, using the GetTemplateChild method, we retrieve the Grid element named "PART_Circle". This Grid is likely the target element for the animation, displaying the animation effect during user interaction.
+        static MagicBar()
+        {
+            DefaultStyleKeyProperty.OverrideMetadata(typeof(MagicBar), new FrameworkPropertyMetadata(typeof(MagicBar)));
+        }
 
-  ```csharp
-  public override void OnApplyTemplate()
-  {
-      base.OnApplyTemplate();
-      Grid grid = (Grid)GetTemplateChild("PART_Circle");
-  
-      InitStoryboard(grid);
-  }
-  ```
+        public override void OnApplyTemplate()
+        {
+            base.OnApplyTemplate();
+            Grid grid = (Grid)GetTemplateChild("PART_Circle");
 
-- #### InitStoryboard Method:
+            InitStoryboard(grid);
+        }
 
-  This method is responsible for initializing the animation. It first creates instances of ValueItem (_vi) and Storyboard (_sb).
-The easing function set for ValueItem is QuinticEaseInOut, which slows down at the start and end of the animation and accelerates in the middle, making the animation appear smooth and natural.
-The animation affects the property Canvas.LeftProperty, indicating that the animation will change the horizontal position of the target element.
-The duration of the animation is set to 0.5 seconds. Finally, the animation target is set to the passed circle (Grid) element, and the animation is added to the storyboard.
+        private void InitStoryboard(Grid circle)
+        {
+            _vi = new();
+            _sb = new();
 
-  ```csharp
-  private void InitStoryboard(Grid circle)
-  {
-      _vi = new();
-      _sb = new();
-  
-      _vi.Mode = EasingFunctionBaseMode.QuinticEaseInOut;
-      _vi.Property = new PropertyPath(Canvas.LeftProperty);
-      _vi.Duration = new Duration(new TimeSpan(0, 0, 0, 0, 500));
-  
-      Storyboard.SetTarget(_vi, circle);
-      Storyboard.SetTargetProperty(_vi, _vi.Property);
-  
-      _sb.Children.Add(_vi);
-  }
-  ```
+            _vi.Mode = EasingFunctionBaseMode.QuinticEaseInOut;
+            _vi.Property = new PropertyPath(Canvas.LeftProperty);
+            _vi.Duration = new Duration(new TimeSpan(0, 0, 0, 0, 500));
 
-- #### OnSelectionChanged Method:
-  
-  This overridden method is triggered when the selected item in MagicBar changes.
-  The method first calls the base class’s OnSelectionChanged method to ensure standard behavior is executed.
-  Then, it sets the _vi’s To property based on the index of the selected item, determining the value of Canvas.LeftProperty at the end of the animation. The animation moves the element to a position proportional to the SelectedIndex.
-  Lastly, by calling _sb.Begin(), the storyboard is started, and the animation is played.
+            Storyboard.SetTarget(_vi, circle);
+            Storyboard.SetTargetProperty(_vi, _vi.Property);
 
-  ```csharp
-  protected override void OnSelectionChanged(SelectionChangedEventArgs e)
-  {
-      base.OnSelectionChanged(e);
-  
-      _vi.To = SelectedIndex * 80;
-      _sb.Begin();
-  }
-  ```
+            _sb.Children.Add(_vi);
+        }
+
+        protected override void OnSelectionChanged(SelectionChangedEventArgs e)
+        {
+            base.OnSelectionChanged(e);
+
+            _vi.To = SelectedIndex * 80;
+            _sb.Begin();
+        }
+    }
+}
+```
+As such, by implementing features that would normally be handled through UserControl in a CustomControl approach at the control level, we can achieve more sophisticated and efficient modularization.
+
+With this, I conclude the explanation of the main features. Detailed information about this control is freely available through the GitHub source code. Additionally, in-depth tutorials are provided in both English and Chinese on YouTube and Bilibili, respectively. I look forward to seeing the diverse research and application of this control in XAML-based platforms.
