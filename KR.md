@@ -15,9 +15,9 @@ WPF 애플리케이션은 전통적으로 메뉴 구성을 통해 여러 화면�
 
 아래 선호하는 플랫폼을 통해 추가적으로 학습할 수 있습니다.
 
-- Youtube: 영어(한국어) Tutorial 영상
-- BiliBili: 중국어 Tutorial 영상
-- CodeProject: 영문 Article 개시
+- Youtube: [영어(한국어) Tutorial 영상](https://www.youtube.com/watch?v=dxuLWlukthg)
+- BiliBili: [중국어 Tutorial 영상](https://www.bilibili.com/video/BV1Ui4y1a717)
+- CodeProject: [영문 Article 개시](https://www.codeproject.com/Articles/5375482/Customizing-ListBox-for-a-Smooth-Animated-Navigati)
 
 그 밖에도 ThemeSwitch, Lol-PlayButton 등의 Tutorial 영상이 있으니 함께 살펴보시길 바랍니다.
 
