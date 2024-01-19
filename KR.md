@@ -21,7 +21,11 @@ WPF 애플리케이션은 전통적으로 메뉴 구성을 통해 여러 화면�
 
 그 밖에도 ThemeSwitch, Lol-PlayButton 등의 Tutorial 영상이 있으니 함께 살펴보시길 바랍니다.
 
-
+## Cross Platform 소스코드 소개
+WPF뿐만 아니라 다양한 Cross-Platform에서도 이 프로젝트를 함께할 수 있습니다. [Lukewire129](https://github.com/lukewire129), [furesoft](https://github.com/furesoft)님의 MAUI/AvaloniaUI 버전을 [Discussions](https://github.com/vickyqu115/navigationbar/discussions)을 통해 확인할 수 있습니다.
+- [MAUI (Lukewire129)](https://github.com/vickyqu115/navigationbar/discussions/3)
+- [Avalonia Version (Lukewire129)](https://github.com/vickyqu115/navigationbar/discussions/4)
+- [Avalonia Version (furesoft)](https://github.com/vickyqu115/navigationbar/discussions/2)
 
 ## 디자인과 구조의 철학
 
