@@ -19,6 +19,12 @@ You can learn more through the following platforms:
 
 Additionally, check out other tutorial videos like ThemeSwitch, Lol-PlayButton, etc.
 
+## Cross-Platform Source Code Introduction
+This project can be joined not only in WPF but also in various Cross-Platform environments. You can check out the MAUI/AvaloniaUI versions by [Lukewire129](https://github.com/lukewire129), [furesoft](https://github.com/furesoft) and furesoft through [Discussions](https://github.com/vickyqu115/navigationbar/discussions).
+
+- [MAUI (Lukewire129)](https://github.com/vickyqu115/navigationbar/discussions/3)
+- [Avalonia Version (Lukewire129)](https://github.com/vickyqu115/navigationbar/discussions/4)
+- [Avalonia Version (furesoft)](https://github.com/vickyqu115/navigationbar/discussions/2)
 
 ## Design and Structural Philosophy
 
