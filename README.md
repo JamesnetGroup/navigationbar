@@ -577,3 +577,23 @@ Remove the manually defined ListBoxItem elements from MainWindow.xaml and ensure
 <navigation:MagicBar x:Name="bar"/>
 ```
 
+### Step 4: Populate ItemsSource in Code-Behind or ViewModel
+In your MainWindow.xaml.cs or a ViewModel file, create a list of NavigationModel items and set it as the ItemsSource for the MagicBar.
+
+
+```csharp
+private void PopulateNavigationItems()
+{
+    List<NavigationModel> items = new List<NavigationModel>
+    {
+        new NavigationModel { DisplayName = "Microsoft", MenuIcon = IconType.Microsoft },
+        new NavigationModel { DisplayName = "Apple", MenuIcon = IconType.Apple },
+        new NavigationModel { DisplayName = "Google", MenuIcon = IconType.Google },
+        new NavigationModel { DisplayName = "Facebook", MenuIcon = IconType.Facebook },
+        new NavigationModel { DisplayName = "Instagram", MenuIcon = IconType.Instagram }
+    };
+
+    bar.ItemsSource = items;
+}
+```
+
