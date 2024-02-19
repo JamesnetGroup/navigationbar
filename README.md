@@ -540,3 +540,40 @@ namespace NavigationBar
 As such, by implementing features that would normally be handled through UserControl in a CustomControl approach at the control level, we can achieve more sophisticated and efficient modularization.
 
 With this, I conclude the explanation of the main features. Detailed information about this control is freely available through the GitHub source code. Additionally, in-depth tutorials are provided in both English and Chinese on YouTube and Bilibili, respectively. I look forward to seeing the diverse research and application of this control in XAML-based platforms.
+
+
+## 6.Dynamic Navigation Bar Customization Using Model Binding
+
+This guide explains how to customize the navigation bar by binding a model to `ItemsSource` instead of directly creating `ListBoxItem` elements in XAML. This approach enhances the flexibility and scalability of your application.
+
+
+
+
+
+### Step 1: Create the Model
+
+First, define a model to represent the navigation items. This model includes a display name and an icon.
+
+```csharp
+public class NavigationModel
+{
+    public string DisplayName { get; set; }
+    public IconType MenuIcon { get; set; }
+}
+```
+
+### Step 2: Update Binding in Generic.xaml
+Modify the binding in your Generic.xaml to reflect the model properties. This allows the navigation bar to display the appropriate text and icon for each item.
+
+```xaml
+<Setter Property="Text" Value="{Binding DisplayName}"/>
+<Setter Property="Icon" Value="{Binding MenuIcon}"/>
+```
+
+### Step 3: Update MainWindow.xaml
+Remove the manually defined ListBoxItem elements from MainWindow.xaml and ensure the MagicBar control is ready to bind to a source.
+
+```xaml
+<navigation:MagicBar x:Name="bar"/>
+```
+
