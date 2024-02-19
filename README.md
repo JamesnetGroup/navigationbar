@@ -597,3 +597,15 @@ private void PopulateNavigationItems()
 }
 ```
 
+## Step 5: Adjust the ItemsPanel Template
+Finally, customize the ItemsPanel template in Generic.xaml to dynamically adjust the number of columns based on the item count, using a UniformGrid.
+
+```xaml
+<ItemsPanelTemplate>
+    <UniformGrid Columns="{Binding RelativeSource={RelativeSource AncestorType=ListBox}, Path=Items.Count}"/>
+</ItemsPanelTemplate>
+```
+
+## Conclusion
+Following these steps allows you to dynamically create a navigation bar with customizable items. This method provides a more scalable and maintainable approach to managing navigation elements in your application.
+
