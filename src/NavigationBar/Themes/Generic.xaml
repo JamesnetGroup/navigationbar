@@ -67,7 +67,7 @@
         <Setter Property="Data" Value="{StaticResource ArcData}"/>
         <Setter Property="Width" Value="100"/>
         <Setter Property="Height" Value="100"/>
-        <Setter Property="Fill" Value="#222222"/>
+        <Setter Property="Fill" Value="Brown"/>
         <Setter Property="Margin" Value="-10 40 -10 -1"/>
     </Style>
     
@@ -80,7 +80,7 @@
     <Style TargetType="{x:Type Grid}" x:Key="Circle">
         <Setter Property="Width" Value="80"/>
         <Setter Property="Height" Value="80"/>
-        <Setter Property="Canvas.Left" Value="-100"/>
+        <!--<Setter Property="Canvas.Left" Value="-100"/>-->
     </Style>
     
     <Style TargetType="{x:Type local:MagicBar}">
@@ -101,7 +101,7 @@
                         <Canvas Margin="20 0 20 0">
                             <Grid x:Name="PART_Circle" Style="{StaticResource Circle}">
                                 <Path Style="{StaticResource Arc}"/>
-                                <Ellipse Fill="#222222"/>
+                                <Ellipse Fill="Brown"/>
                                 <Ellipse Fill="CadetBlue" Margin="6"/>
                             </Grid>
                         </Canvas>
