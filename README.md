@@ -612,3 +612,87 @@ Following these steps allows you to dynamically create a navigation bar with cus
 
 ## Q&A
 ### Floating-Point Precision Issue in Magic Navigationbar Tutorial 
+In the third Magic Navigationbar WPF tutorial video, a viewer raised the following question:
+
+"I see very thin white lines in the XAML designer of VS. I have seen this white line occasionally in other projects as well."
+
+![](https://jamesnetdev.blob.core.windows.net/articleimages/bd42dd4a-4d06-4504-b9dd-a1170682a80d.gif)
+
+[Image Source: (ali50m)](https://github.com/vickyqu115/navigationbar/pull/5)
+
+### Problem Analysis
+1. The white line is not visible when running at normal size.
+2. The white line appears when the scale is increased beyond a certain level.
+
+This issue is related to **floating-point arithmetic precision and its impact on graphics when zoomed in**.
+While floating-point precision issues are not noticeable in everyday calculations, they become prominent when zoomed in or when precise manipulation is required. When graphics are zoomed in, minor errors are magnified, making them visually prominent.
+
+### Why Do Floating-Point Issues Occur When Zooming In?
+Floating-point issues become more pronounced when zoomed in due to the following reasons:
+
+1. **Smaller Pixel Units:** After zooming in, individual pixel sizes become smaller, requiring more precise calculations.
+2. **More Decimal Places Needed:** When calculating in smaller units, the errors in floating-point arithmetic become more apparent.
+3. **Limitations of Floating-Point Representation:** Floating-point represents real numbers approximately, so when zoomed in, these errors are more noticeable.
+
+### Problem Verification
+#### No Issue at Normal Size
+At normal size, minor floating-point errors are not noticeable. For example, setting the Margin at the top of the Arc to 40 pixels in this project works fine without any issues.
+
+```xml
+<Style TargetType="{x:Type Path}" x:Key="Arc">
+    ...
+    <Setter Property="Margin" Value="-10 40 -10 -1"/>
+</Style>
+```
+[Arc at Normal Size]
+
+![](https://jamesnetdev.blob.core.windows.net/articleimages/43dbd0a0-6669-4a24-9237-bf5c2c83587d.png)
+
+#### Issue When Zoomed In
+When the graphics are zoomed in, minor floating-point errors are magnified, making them visually prominent.
+
+[White Line When Zoomed In]
+
+![](https://jamesnetdev.blob.core.windows.net/articleimages/4cb3977f-8b50-4f77-9bcd-48f709553921.png)
+
+### Adjustment Method
+
+To compensate for the error, you can adjust the Margin value to fit the actual situation. For example, adjust the Margin value to 39.66 pixels to correct the error.
+
+[Effect After Adjustment]
+
+![](https://jamesnetdev.blob.core.windows.net/articleimages/9bf7f1b0-1807-42d4-9667-40c1ae55cea7.png)
+
+### Limitations and Visual Impact of Floating-Point Precision
+
+#### Approximation Issue
+Computers approximate real numbers with floating-point, so these approximation errors become more pronounced when zoomed in. For example, a Margin value originally set to 40 can cause issues due to minor errors when zoomed in.
+
+#### Visual Artifacts
+Floating-point errors can cause visual artifacts, especially at the boundaries or edges of graphics. This can result in jagged edges or positional deviations.
+
+### Solutions for Floating-Point Precision Issues
+
+To address floating-point precision issues, particularly those that occur when zooming in, the following methods can be used:
+
+#### 1. Use Fixed-Point Arithmetic
+If the required precision range is known exactly, fixed-point arithmetic can be used instead of floating-point to resolve the issue.
+
+#### 2. Increase Calculation Precision
+Use fixed-point arithmetic libraries or fixed-precision data types for calculations.
+
+#### 3. Avoid Extreme Zooming
+If possible, avoid extreme zooming of graphics. Set a reasonable zoom range when designing the application to prevent floating-point errors from becoming prominent.
+
+#### 4. UseLayoutRounding and SnapsToDevicePixels
+
+These properties can be used to align boundaries to pixel units. While this may cause performance degradation, it can be easily activated in higher-level controls like Window to solve the issue simply.
+
+```text
+UseLayoutRounding="True"
+SnapsToDevicePixels="True"
+```
+
+### Conclusion
+
+Floating-point precision issues can become prominent when graphics are zoomed in, but these issues can be effectively resolved with appropriate methods and techniques. I hope this explanation helps you understand and resolve floating-point precision issues.
