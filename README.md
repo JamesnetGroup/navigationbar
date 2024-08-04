@@ -1,4 +1,110 @@
-<img src="https://github.com/vickyqu115/navigationbar/assets/101777355/e67922b2-dd19-4c14-a1be-66266c4ff248" width="700px"/>
+# NavigationBar [![English](https://img.shields.io/badge/Language-English-blue.svg)](README.md) [![한국어](https://img.shields.io/badge/Language-한국어-red.svg)](README.ko.md) [![中文](https://img.shields.io/badge/Language-中文-red.svg)](README.zh-CN.md)
+
+A sophisticated WPF ListBox-based CustomControl for creating animated, mobile-style navigation bars
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![.NET](https://img.shields.io/badge/.NET-8.0-blue.svg)](https://dotnet.microsoft.com/download)
+[![Stars](https://img.shields.io/github/stars/vickyqu115/navigationbar.svg)](https://github.com/vickyqu115/navigationbar/stargazers)
+[![Issues](https://img.shields.io/github/issues/vickyqu115/navigationbar.svg)](https://github.com/vickyqu115/navigationbar/issues)
+
+## Project Overview
+
+NavigationBar is a custom WPF control that demonstrates advanced techniques in creating a mobile-inspired navigation interface. It showcases the power and flexibility of WPF in implementing complex UI behaviors and animations, particularly focusing on CustomControl development and efficient animation design.
+
+<img src="https://github.com/vickyqu115/navigationbar/assets/101777355/7b360df7-b62b-440b-a43d-d5b4926d4b7b" width="49%"/>
+<img src="https://github.com/user-attachments/assets/e5d5aedc-d240-4192-a838-ab6bac9ae3ef" width="49%"/>
+<img src="https://github.com/user-attachments/assets/7bbbb515-56b9-4cc2-b712-980e1233a61b" width="49%"/>
+<img src="https://github.com/user-attachments/assets/db87b05a-6aef-4c20-9965-ab3e30676fe6" width="49%"/>
+<img src="https://github.com/vickyqu115/navigationbar/assets/101777355/102fb540-2ee5-46e5-8ba3-1978d48613bc" width="49%"/>
+<img src="https://github.com/user-attachments/assets/b235f5b9-d4ae-4c5f-97dd-c2c95ddbee91" width="49%"/>
+
+
+## Key Features and Implementations
+#### 1. Advanced CustomControl Development
+- [x] Extension of WPF ListBox for specialized navigation functionality
+- [x] Implementation of complex UI elements using pure XAML and C#
+- [x] Project structure optimized for modularity with separate application and library projects
+
+#### 2. Sophisticated Animation Techniques
+- [x] Utilization of Jamesnet.Wpf animation wrapper classes (ValueItem, ThickItem, ColorItem) for concise and efficient animations
+- [x] Custom animation logic for smooth transitions between navigation items
+- [x] Innovative design to operate animations outside of ItemsPresenter for enhanced flexibility
+
+#### 3. XAML-Based Vector Graphics
+- [x] Creation of complex shapes using Path and Geometry in Visual Studio for Blend
+- [x] Implementation of vector-based icons for scalable and high-quality visuals
+
+#### 4. Advanced WPF Concepts
+- [x] Sophisticated ControlTemplate design for ListBox, enabling unique layout and behavior
+- [x] Implementation of custom ItemsPanel for flexible item layout
+
+#### 5. Performance Optimization
+- [x] Efficient rendering using clipping and layout techniques
+- [x] Optimized animation performance through careful resource management
+
+## Technical Deep Dive
+- **CustomControl Architecture**: Demonstrates the power of CustomControl in WPF, allowing for complete control over behavior and appearance.
+- **Animation Outside ItemsPresenter**: Innovative approach to design animations that operate outside the ItemsPresenter, a key feature of this control.
+- **Jamesnet.Wpf Animation Integration**: Utilizes ValueItem, ThickItem, and ColorItem from Jamesnet.Wpf for simplified and more readable animation code.
+- **Geometry Creation in Blend**: Showcases the use of Visual Studio for Blend to create complex geometries directly, enhancing the design process.
+- **ListBox ControlTemplate Redesign**: Completely overhauls the ListBox template to achieve a unique navigation bar layout and functionality.
+
+## Technology Stack
+- WPF (Windows Presentation Foundation)
+- .NET 8.0
+- C# 10.0
+- XAML
+- Jamesnet.Wpf (for animation wrapper classes)
+
+## Project Structure
+- Application project for demo and testing
+- Library project for the NavigationBar control, promoting reusability
+
+## Getting Started
+### Prerequisites
+- Visual Studio 2022 or later
+- .NET 8.0 SDK
+
+### Installation and Execution
+#### 1. Clone the repository:
+
+```
+git clone https://github.com/vickyqu115/navigationbar.git
+```
+
+#### 2. Open the solution
+- [x] Visual Studio
+- [x] Visual Studio Code
+- [x] Blend for Visual Studio
+- [x] JetBrains Rider
+
+<img src="https://github.com/user-attachments/assets/af70f422-7057-4e77-a54d-042ee8358d2a" width="24%"/>
+<img src="https://github.com/user-attachments/assets/c06e89aa-dbd2-4db2-b5cd-0f58cbd2f0db" width="24%"/>
+<img src="https://github.com/user-attachments/assets/e4feaa10-a107-4b58-8d13-1d8be620ec62" width="24%"/>
+<img src="https://github.com/user-attachments/assets/5ff487f6-55e4-43e1-9abf-f8d419ee6943" width="24%"/>
+
+#### 3. Build and Run
+- [x] Set the startup project
+- [x] Press F5 or click the Run button
+- [x] Windows 11 recommended
+
+## Learning Resources
+- [Detailed Article on Implementation](https://jamesnet.dev/article/edit/110)
+- [YouTube Tutorial](https://bit.ly/3TVeRhF)
+- [BiliBili Tutorial](https://bit.ly/3UvaOsl)
+- [CodeProject](https://www.codeproject.com/Articles/5375482/Customizing-ListBox-for-a-Smooth-Animated-Navigati)
+
+## Contributing
+Contributions to NavigationBar are welcome! Feel free to submit issues, create pull requests, or suggest improvements.
+
+## License
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Contact
+- Website: https://jamesnet.dev
+- Email: vickyqu115@hotmail.com, james@jamesnet.dev
+
+Explore advanced WPF techniques and create engaging navigation experiences with NavigationBar!
 
 ## Introduction
 WPF applications traditionally prefer a programmatic approach that connects multiple screens through menu configurations and presents them in a unified manner. This technique, often referred to as the menu or Navigation, is one of the core implementations in WPF. It also has a direct correlation with the architecture (design) of the project, so paying more attention to its implementation can positively impact the quality of the project.
@@ -6,18 +112,6 @@ WPF applications traditionally prefer a programmatic approach that connects mult
 This control features a design and animations specialized for mobile, but it can be elegantly and structurally implemented using ListBox and Animation technologies available in WPF. Additionally, it can be similarly implemented in Cross-Platform environments such as AvaloniaUI, Uno, OpenSilver, MAUI, which allows this project to be researched and applied across various platforms.
 
 The goal is also to widely promote the flexibility and excellence of WPF implementation and share the technology. Through this project, we hope you will deeply experience the charm of WPF.
-
-## Learning through Tutorial Videos and CodeProject Article
-This control comes with a tutorial video, approximately 30 minutes long, available in English and Chinese audio with Korean subtitles. Creating a tutorial video requires more time and effort than one might think, and while it's challenging, your encouragement and support are becoming a great motivation.
-
-You can learn more through the following platforms:
-
-- Youtube: [English/Korean Tutorial Video](https://www.youtube.com/watch?v=dxuLWlukthg)
-- BiliBili: [Chinese Tutorial Video](https://www.bilibili.com/video/BV1Ui4y1a717/?spm_id_from=333.999.0.0&vd_source=f62a1783ac9166a4d798823ad1861fd2)
-- CodeProject：[Article](https://www.codeproject.com/Articles/5375482/Customizing-ListBox-for-a-Smooth-Animated-Navigati)
-- GitHub：[Navigationbar](https://github.com/vickyqu115/navigationbar/edit/main/README.md)
-
-Additionally, check out other tutorial videos like ThemeSwitch, Lol-PlayButton, etc.
 
 ## Cross-Platform Source Code Introduction
 This project can be joined not only in WPF but also in various Cross-Platform environments. You can check out the MAUI/AvaloniaUI versions by [Lukewire129](https://github.com/lukewire129), [furesoft](https://github.com/furesoft) and furesoft through [Discussions](https://github.com/vickyqu115/navigationbar/discussions).
@@ -35,7 +129,7 @@ This control style is one used widely through web or mobile navigation configura
 
 A lot of focus has been put into the quality of the Source code through Refactoring. The project minimizes/optimizes hierarchical XAML structures and emphasizes enhancing code quality through interaction between XAML and Behind code using CustomControl. The control isn't just about providing basic functionality; it's about conveying technical inspiration and encouraging diverse applications through its structural philosophy.
 
-## Project Overview
+## Project Detail
 
 #### MagicBar.cs
 MagicBar, the core control of this project, is a CustomControl inheriting from ListBox control. In most development scenarios, UserControl is the usual choice, but for functions involving complex features, animations, and repetitive elements like in this case, it's more effective to divide and implement them as smaller Control (CustomControl) units.
