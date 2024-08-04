@@ -13,10 +13,10 @@ NavigationBar is a custom WPF control that demonstrates advanced techniques in c
 
 <img src="https://github.com/vickyqu115/navigationbar/assets/101777355/7b360df7-b62b-440b-a43d-d5b4926d4b7b" width="49%"/>
 <img src="https://github.com/user-attachments/assets/e5d5aedc-d240-4192-a838-ab6bac9ae3ef" width="49%"/>
-<img src="https://github.com/user-attachments/assets/7bbbb515-56b9-4cc2-b712-980e1233a61b" width="49%"/>
-<img src="https://github.com/user-attachments/assets/db87b05a-6aef-4c20-9965-ab3e30676fe6" width="49%"/>
 <img src="https://github.com/vickyqu115/navigationbar/assets/101777355/102fb540-2ee5-46e5-8ba3-1978d48613bc" width="49%"/>
 <img src="https://github.com/user-attachments/assets/b235f5b9-d4ae-4c5f-97dd-c2c95ddbee91" width="49%"/>
+<img src="https://github.com/user-attachments/assets/7bbbb515-56b9-4cc2-b712-980e1233a61b" width="49%"/>
+<img src="https://github.com/user-attachments/assets/db87b05a-6aef-4c20-9965-ab3e30676fe6" width="49%"/>
 
 
 ## Key Features and Implementations
