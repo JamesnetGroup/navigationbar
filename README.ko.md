@@ -1,4 +1,4 @@
-# NavigationBar [![English](https://img.shields.io/badge/Language-English-blue.svg)](README.md) [![中文](https://img.shields.io/badge/Language-中文-red.svg)](README.zh-CN.md) [![한국어](https://img.shields.io/badge/Language-한국어-green.svg)](README.ko.md) 
+# NavigationBar [![English](https://img.shields.io/badge/docs-English-blue.svg)](README.md) [![中文](https://img.shields.io/badge/docs-中文-red.svg)](README.zh-CN.md) [![한국어](https://img.shields.io/badge/docs-한국어-green.svg)](README.ko.md) 
 
 애니메이션이 적용된 모바일 스타일의 내비게이션 바를 만들기 위한 정교한 WPF ListBox 기반 CustomControl
 
